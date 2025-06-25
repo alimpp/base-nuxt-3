@@ -4,7 +4,7 @@
       <LayoutsDocsSidebar
         @chnageSideMenuState="chnageSideMenuState"
         class="slid-right-animation-5"
-        v-if="sideMenuState"
+        :isOpen="sideMenuState"
       />
     </div>
     <div class="w-100 flex flex-column">
@@ -18,7 +18,6 @@
 
 <script setup>
 const sideMenuState = ref(true);
-
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
 };
