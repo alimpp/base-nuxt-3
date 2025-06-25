@@ -1,16 +1,12 @@
 <template>
   <button
     class="base-button"
-    :style="{ width: width, height: height, border: border }"
-    :class="[bg, color]"
+    :style="{ width: width, height: height }"
+    :class="[bg, color, border]"
     :disabled="disabled || loading"
   >
-    <div class="flex align-center">
-      <slot name="iconRight"></slot>
-      <span :class="[fontSize, fontWight, color]"> {{ name }}</span>
-      <IconsSpinner class="mx-2" v-if="loading" :color="loadingColor" />
-      <slot name="iconLeft"></slot>
-    </div>
+    <span :class="[fontSize, fontWight, color]"> {{ name }}</span>
+    <BaseIcon name="line-md:loading-loop" v-if="loading" />
   </button>
 </template>
 
@@ -23,10 +19,6 @@ const props = defineProps({
   color: {
     type: String,
     default: "color-primary-white",
-  },
-  loadingColor: {
-    type: String,
-    default: "#fff",
   },
   fontSize: {
     type: String,
