@@ -16,7 +16,16 @@
         @click="navigate(`${item.path}`)"
         :class="{ 'active-path': route.path == item.path }"
       >
-        - {{ item.name }}
+        <BaseIcon
+          width="18px"
+          name="fa6-solid:hand-point-right"
+          color="#fff"
+          v-if="route.path == item.path"
+        />
+        <BaseIcon width="18px" name="mdi:hand-back-right" color="#fff" v-else />
+        <span class="px-5">
+          {{ item.name }}
+        </span>
       </div>
     </div>
   </div>
