@@ -1,0 +1,29 @@
+@import url("./theme_colors.scss");
+
+.border-primary {
+  border: 1px solid var(--primary-) !important;
+}
+.border-secondary {
+  border: 1px solid var(--secondary-) !important;
+}
+.border-success {
+  border: 1px solid var(--success-) !important;
+}
+.border-success-low {
+  border: 1px solid var(--success-low-) !important;
+}
+.border-info {
+  border: 1px solid var(--info-) !important;
+}
+.border-warning {
+  border: 1px solid var(--warning-) !important;
+}
+.border-danger {
+  border: 1px solid var(--danger-) !important;
+}
+.border-red {
+  border: 1px solid var(--red-) !important;
+}
+.border-gray {
+  border: 1px solid var(--gray-) !important;
+}

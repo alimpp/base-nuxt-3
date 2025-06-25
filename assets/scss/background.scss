@@ -1,0 +1,58 @@
+@import url("./theme_colors.scss");
+
+.bg-primary {
+  background: var(--primary-);
+  transition: 0.5s;
+}
+.bg-secondary {
+  background: var(--secondary-);
+  transition: 0.5s;
+}
+.bg-success {
+  background: var(--success-);
+  transition: 0.5s;
+}
+.bg-info {
+  background: var(--info-);
+  transition: 0.5s;
+}
+.bg-warning {
+  background: var(--warning-);
+  transition: 0.5s;
+}
+.bg-danger {
+  background: var(--danger-);
+  transition: 0.5s;
+}
+.bg-red {
+  background: var(--red-);
+  transition: 0.5s;
+}
+.bg-gray {
+  background: var(--gray-);
+  transition: 0.5s;
+}
+.bg-dark {
+  background: var(--dark-);
+  transition: 0.5s;
+}
+.bg-white {
+  background: var(--white-);
+  transition: 0.5s;
+}
+.bg-none {
+  background: none;
+}
+
+// ** Application theme class ** //
+.bg-app-dark {
+  background: var(--dark-bg-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-app-light {
+  background: var(--light-bg-);
+  color: var(--dark-);
+  transition: 0.5s;
+}
+// ** Application theme class ** //
