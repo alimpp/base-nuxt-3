@@ -1,5 +1,7 @@
 <template>
-  <div class="w-100 h-100-dvh flex flex-column align-center justify-center">
+  <div
+    class="w-100 h-100-dvh bg-app-dark flex flex-column align-center justify-center"
+  >
     <span class="f-s-20 f-w-600 color-primary">Hello,</span>
     <span class="f-s-14 f-w-600 pt-5">Welcome To Application Docs</span>
     <BaseButton

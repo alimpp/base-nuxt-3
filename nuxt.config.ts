@@ -3,4 +3,8 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: false },
   css: ["@/assets/scss/main.scss"],
+  imports: {
+    autoImport: true,
+    dirs: ["stores"],
+  },
 });

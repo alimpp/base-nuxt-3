@@ -49,11 +49,12 @@ const chnageSideMenuState = () => {
 };
 
 const items = ref([
-  { id: 0, name: "Button", path: "/docs/button" },
-  { id: 1, name: "Text Input", path: "/docs/input" },
-  { id: 0, name: "Text Area", path: "/docs/textarea" },
-  { id: 0, name: "Avatar", path: "/docs/avatar" },
-  { id: 0, name: "Select Items", path: "/docs/select" },
+  { id: 0, name: "Interview", path: "/docs/interview" },
+  { id: 1, name: "Button", path: "/docs/button" },
+  { id: 2, name: "Text Input", path: "/docs/input" },
+  { id: 3, name: "Text Area", path: "/docs/textarea" },
+  { id: 4, name: "Avatar", path: "/docs/avatar" },
+  { id: 5, name: "Select Items", path: "/docs/select" },
 ]);
 
 const navigate = (path) => {
