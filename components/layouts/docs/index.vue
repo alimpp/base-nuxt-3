@@ -9,7 +9,7 @@
     </div>
     <div class="w-100 flex flex-column">
       <LayoutsDocsHeader @chnageSideMenuState="chnageSideMenuState" />
-      <div class="px-10 py-10">
+      <div class="px-10 py-10 router-content">
         <NuxtPage />
       </div>
     </div>
@@ -22,3 +22,25 @@ const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
 };
 </script>
+
+<style scoped>
+.router-content {
+  height: 90dvh;
+  overflow-y: scroll;
+}
+.router-content::-webkit-scrollbar {
+  width: 0px;
+  border: 0px solid #fff;
+  border-radius: 5px;
+}
+
+.router-content::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #eeeeee;
+}
+
+.router-content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #cac8c8;
+}
+</style>
