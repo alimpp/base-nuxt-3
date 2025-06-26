@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <span class="f-s-12 f-w-500 color-primary">TASKHOLDER</span>
+    <span class="f-s-12 f-w-500 color-primary">APPLICATION</span>
     <span class="f-s-12 f-w-500 px-4">/</span>
     <span class="f-s-12 f-w-500">{{ parent }}</span>
     <span class="f-s-12 f-w-500 px-4">/</span>
