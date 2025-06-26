@@ -5,8 +5,14 @@
     :class="[bg, color, border]"
     :disabled="disabled || loading"
   >
-    <span :class="[fontSize, fontWight, color]"> {{ name }}</span>
+    <span :class="[fontSize, fontWight, color]" class="px-2"> {{ name }}</span>
     <BaseIcon name="line-md:loading-loop" v-if="loading" />
+    <BaseIcon
+      :name="icon"
+      v-if="!loading && icon"
+      :width="iconWidth"
+      :height="iconHeight"
+    />
   </button>
 </template>
 
@@ -44,6 +50,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  icon: {
+    type: String,
+    default: "",
+  },
   width: {
     type: String,
     default: "70px",
@@ -51,6 +61,14 @@ const props = defineProps({
   height: {
     type: String,
     default: "35px",
+  },
+  iconWidth: {
+    type: String,
+    default: "18",
+  },
+  iconHeight: {
+    type: String,
+    default: "18",
   },
   padding: {
     type: String,
