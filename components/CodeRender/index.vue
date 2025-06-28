@@ -22,6 +22,15 @@
         @click="copyToClipboard()"
         class="fade-animation-1s"
       />
+      <BaseButton
+        name="Download Source Code"
+        bg="bg-none"
+        width="160px"
+        color="color-gray"
+        icon="line-md:download-loop"
+        @click="download()"
+        class="fade-animation-1s"
+      />
     </div>
     <pre
       class="code-block"
@@ -52,6 +61,24 @@ const copyToClipboard = () => {
     copyState.value = false;
   }, 2000);
 };
+
+const download = () => {
+  const blob = new Blob([props.sourceCode], { type: 'text/plain' });
+  
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'source-code.txt';
+  
+  document.body.appendChild(a);
+  a.click();
+  
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 100);
+}
 
 onMounted(() => {
   Prism.highlightAll();

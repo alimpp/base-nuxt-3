@@ -4,34 +4,11 @@
 @import url("./font_weight.scss");
 @import url("./animations.scss");
 @import url("./border.scss");
+
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.border-rounded {
-  border-radius: 5px;
-}
-
-.border-circle {
-  border-radius: 50%;
-}
-
-.y-scroll {
-  overflow-y: scroll;
-}
-
-.y-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.overflow-hidden {
-  overflow: hidden;
 }
 
 @for $i from 1 through 100 {
@@ -114,4 +91,28 @@
     margin-top: #{$i}px;
     margin-bottom: #{$i}px;
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.border-rounded {
+  border-radius: 5px;
+}
+
+.border-circle {
+  border-radius: 50%;
+}
+
+.y-scroll {
+  overflow-y: scroll;
+}
+
+.y-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }

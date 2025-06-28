@@ -56,3 +56,16 @@
   transition: 0.5s;
 }
 // ** Application theme class ** //
+
+// ** Application base card theme class ** //
+.base-card-dark {
+  background: var(--base-card-dark-bg-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.base-card-light {
+  background: var(--base-card-light-bg-);
+  color: var(--dark-);
+  transition: 0.5s;
+}
+// ** Application base card theme class ** //

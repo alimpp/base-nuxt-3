@@ -1,5 +1,5 @@
 <template>
-  <div class="border-rounded base-card w-100" :class="[bgClass, px, py]">
+  <div class="border-rounded base-card base-card-dark" :class="[px, py]">
     <slot></slot>
   </div>
 </template>
