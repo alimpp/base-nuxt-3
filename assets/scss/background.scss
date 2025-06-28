@@ -2,42 +2,52 @@
 
 .bg-primary {
   background: var(--primary-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-secondary {
   background: var(--secondary-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-success {
   background: var(--success-);
+  color: var(--dark-);
   transition: 0.5s;
 }
 .bg-info {
   background: var(--info-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-warning {
   background: var(--warning-);
+  color: var(--dark-);
   transition: 0.5s;
 }
 .bg-danger {
   background: var(--danger-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-red {
   background: var(--red-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-gray {
   background: var(--gray-);
+  color: var(--dark-);
   transition: 0.5s;
 }
 .bg-dark {
   background: var(--dark-);
+  color: var(--white-);
   transition: 0.5s;
 }
 .bg-white {
   background: var(--white-);
+  color: var(--dark-);
   transition: 0.5s;
 }
 .bg-none {

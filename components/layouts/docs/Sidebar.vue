@@ -94,7 +94,7 @@ const navigate = (path) => {
   .container {
     position: fixed;
     z-index: 100;
-    width: 100%;
+    width: 80%;
   }
   .close-container {
     display: flex;

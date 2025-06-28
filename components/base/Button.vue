@@ -5,7 +5,7 @@
     :class="[bg, color, border]"
     :disabled="disabled || loading"
   >
-    <span :class="[fontSize, fontWight, color]" class="px-2"> {{ name }}</span>
+    <span :class="[fontSize, fontWeight, color]" class="px-2"> {{ name }}</span>
     <BaseIcon name="line-md:loading-loop" v-if="loading" />
     <BaseIcon
       :name="icon"
@@ -30,7 +30,7 @@ const props = defineProps({
     type: String,
     default: "f-s-12",
   },
-  fontWight: {
+  fontWeight: {
     type: String,
     default: "f-w-500",
   },
@@ -56,7 +56,7 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "70px",
+    default: "90px",
   },
   height: {
     type: String,
