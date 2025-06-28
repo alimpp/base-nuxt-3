@@ -5,7 +5,7 @@
     :class="[bg, color, border]"
     :disabled="disabled || loading"
   >
-    <span :class="[fontSize, fontWeight, color]" class="px-2"> {{ name }}</span>
+    <span :class="[fontSize, fontWeight, color]" class="px-2" v-if="name"> {{ name }}</span>
     <BaseIcon name="line-md:loading-loop" v-if="loading" />
     <BaseIcon
       :name="icon"

@@ -75,6 +75,13 @@ const loading = ref(true)
       <BaseButton name="button" class="mx-5 mt-5" icon="solar:bag-2-broken" />
     </div>
     <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseButton name="button" icon="solar:alarm-broken" />'/>
+    <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3">Button With Just Icon</span>
+    <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
+      <BaseButton width="40px" class="mx-5 mt-5" icon="solar:alarm-broken" />
+      <BaseButton width="40px" class="mx-5 mt-5" icon="solar:album-outline" />
+      <BaseButton width="40px" class="mx-5 mt-5" icon="solar:bag-2-broken" />
+    </div>
+    <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseButton icon="solar:alarm-broken" />'/>
     <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3">Add Custom width And Height To Icon</span>
     <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
       <BaseButton name="button" class="mx-5 mt-5" icon="solar:alarm-broken" iconWidth="22" iconHeight="22" />
