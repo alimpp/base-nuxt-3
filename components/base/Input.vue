@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column w-100">
-    <span class="f-s-12 f-w-500" :class="{ 'color-danger': errorMessage }">
+    <span class="pb-5 f-s-12 f-w-500" :class="{ 'color-danger': errorMessage }">
       {{ label }}
     </span>
     <input
@@ -13,12 +13,13 @@
       :type="type"
       :class="{
         error: errorMessage,
+        disabled: disabled
       }"
       :disabled="disabled"
       :placeholder="placeholder"
       class="mt-2"
     />
-    <span v-if="errorMessage" class="color-danger f-s-12 f-w-500">
+    <span v-if="errorMessage" class="color-danger f-s-12 f-w-500 pt-5">
       {{ errorMessage }}
     </span>
   </div>
@@ -74,6 +75,10 @@ input {
   border: 1px solid #8481812f;
   border-radius: 6px;
   color: black;
+}
+
+.disabled {
+  cursor: not-allowed;
 }
 
 .error {

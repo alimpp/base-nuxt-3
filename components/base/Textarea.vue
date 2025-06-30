@@ -63,14 +63,14 @@
     },
     width: {
       type: String,
-      default: "100%",
+      default: "",
     },
   });
   </script>
   
   <style scoped lang="scss">
   textarea {
-    padding: 0 7px;
+    padding: 10px 7px;
     outline: none;
     border: 1px solid #8481812f;
     border-radius: 6px;
