@@ -120,7 +120,27 @@ const loading = ref(true)
 <BaseButton name="button" bg="bg-none"  border="border-danger" />
 <BaseButton name="button" bg="bg-none"  border="border-red" />
 <BaseButton name="button" bg="bg-none"  border="border-gray" />'/>
-  </div>
+<BaseDivider class="mt-20" />
+<span class="f-s-16 f-w-600 pt-20 slid-up-animation-3">Read For More Components ?</span>
+<div class="flex flex-wrap mt-20">
+  <BaseCard @click="navigateTo('/docs/input')"  class="flex py-10 px-20 align-center cursor-pointer mt-10">
+    <BaseIcon name="mdi:hand-back-right" color="#fff" />
+    <span class="f-s-14 f-w-600 px-2">Text Input</span>
+  </BaseCard>
+  <BaseCard @click="navigateTo('/docs/textarea')"  class="flex py-10 px-20 align-center cursor-pointer mt-10 mx-10">
+    <BaseIcon name="mdi:hand-back-right" color="#fff" />
+    <span class="f-s-14 f-w-600 px-2">Text Area</span>
+  </BaseCard>
+  <BaseCard @click="navigateTo('/docs/avatar')"  class="flex py-10 px-20 align-center cursor-pointer mt-10">
+    <BaseIcon name="mdi:hand-back-right" color="#fff" />
+    <span class="f-s-14 f-w-600 px-2">Avatar</span>
+  </BaseCard>
+  <BaseCard  @click="navigateTo('/docs/select')" class="flex py-10 px-20 align-center cursor-pointer mt-10 mx-10">
+    <BaseIcon name="mdi:hand-back-right" color="#fff" />
+    <span class="f-s-14 f-w-600 px-2">Select Items</span>
+  </BaseCard>
+</div>
+</div>
 </template>
 
 <script setup>
