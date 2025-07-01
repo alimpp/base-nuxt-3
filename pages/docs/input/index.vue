@@ -67,7 +67,7 @@ const username = ref(null)
 </template>
 
 <script setup>
-const username = ref(null)
+
 definePageMeta({
   layout: "docs",
 });

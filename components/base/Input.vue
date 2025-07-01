@@ -26,6 +26,11 @@
 </template>
 
 <script setup>
+const errorMessage = ref('')
+const emit = defineEmits(["update:access"]);
+
+const access = defineModel('access')
+
 const props = defineProps({
   disabled: {
     type: Boolean,
@@ -38,11 +43,6 @@ const props = defineProps({
     required: false,
   },
   type: {
-    type: String,
-    default: "",
-    required: false,
-  },
-  errorMessage: {
     type: String,
     default: "",
     required: false,
@@ -65,7 +65,40 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  validate: {
+    type: Boolean,
+    default: false
+  },
+  rules: {
+    type: String,
+    default: "",
+  }
 });
+
+const validEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+watch(() => props.modelValue, (nVal,oval) => {
+  if(props.validate) {
+    switch (props.rules) {
+      case 'email':      
+        if(props.modelValue != '') {
+          if(validEmail(props.modelValue)) {
+            access.value = true
+            errorMessage.value = ''
+          } else {
+            access.value = false
+            errorMessage.value = 'email not valid'
+          }
+        } else {
+          errorMessage.value = ''
+        }
+      break;
+    }
+  }
+}, {deep: true})
 </script>
 
 <style scoped lang="scss">
