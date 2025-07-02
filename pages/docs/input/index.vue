@@ -44,6 +44,33 @@ const username = ref(null)
       <BaseInput width="300px" height="45px" label="Username" placeholder="Enter Username" class="mt-5" />
     </div>
     <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseInput width="300px" height="45px" label="Username" placeholder="Enter Username" />'/>
+    <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3"
+      >Handle Validation With BaseInput</span
+    >
+    <div class="flex flex-column mt-20">
+      <BaseInput label="Email" placeholder="Enter Email" v-model="form.email" validate="true" v-model:access="access" rules="email" />
+      <BaseInput label="Password" placeholder="Enter Password" v-model="form.password" validate="true" v-model:access="access" rules="length" minLength="3" maxLength="20" />
+      <BaseButton class="mt-10" name="clicked" @click="cliked" />
+    </div>
+    <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseInput label="Email" placeholder="Enter Email" v-model="form.email" validate="true" v-model:access="access" rules="email" />
+<BaseInput label="Password" placeholder="Enter Password" v-model="form.password" validate="true" v-model:access="access" rules="length" minLength="3" maxLength="20" />
+<BaseButton class="mt-10" name="clicked" @click="cliked" />
+
+<script setup>
+const access = ref(true)
+const form = ref({
+  email: "",
+  password: ""
+})
+
+const cliked = () => {
+  if(form.value.email && form.value.password) {
+   access.value ? alert("valid") : alert("not valid")
+  } else {
+    alert("not valid")
+  }
+}
+</script>'/>
     <span class="f-s-16 f-w-600 pt-20 slid-up-animation-3">Read For More Components ?</span>
 <div class="flex flex-wrap mt-20">
   <BaseCard @click="navigateTo('/docs/button')"  class="flex py-10 px-20 align-center cursor-pointer mt-10">
@@ -67,6 +94,20 @@ const username = ref(null)
 </template>
 
 <script setup>
+const username = ref('')
+const access = ref(true)
+const form = ref({
+  email: '',
+  password: ''
+})
+
+const cliked = () => {
+  if(form.value.email && form.value.password) {
+   access.value ? alert('valid') : alert('not valid')
+  } else {
+    alert('not valid')
+  }
+}
 
 definePageMeta({
   layout: "docs",

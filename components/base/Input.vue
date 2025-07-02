@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+import { CoreValidations } from '@/composables/CoreValidations'
+
 const errorMessage = ref('')
 const emit = defineEmits(["update:access"]);
 
@@ -72,20 +74,23 @@ const props = defineProps({
   rules: {
     type: String,
     default: "",
-  }
+  },
+  minLength: {
+    type: Number,
+    default: 0
+  },
+  maxLength: {
+    type: Number,
+    default: 0
+  },
 });
-
-const validEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
 
 watch(() => props.modelValue, (nVal,oval) => {
   if(props.validate) {
     switch (props.rules) {
       case 'email':      
         if(props.modelValue != '') {
-          if(validEmail(props.modelValue)) {
+          if(CoreValidations.validEmail(props.modelValue)) {
             access.value = true
             errorMessage.value = ''
           } else {
@@ -94,6 +99,25 @@ watch(() => props.modelValue, (nVal,oval) => {
           }
         } else {
           errorMessage.value = ''
+        }
+      break;
+      case 'required':      
+        if(CoreValidations.validEmpty(props.modelValue)) {
+          access.value = true
+          errorMessage.value = ''
+        } else {
+          access.value = false
+          errorMessage.value = 'Field is required'
+        }
+      break;
+      case 'length':   
+        const result = CoreValidations.validLength(props.modelValue, props.minLength, props.maxLength)   
+        if(result.isValid) {
+          access.value = true
+          errorMessage.value = result.message
+        } else {
+          access.value = false
+          errorMessage.value = result.message
         }
       break;
     }
