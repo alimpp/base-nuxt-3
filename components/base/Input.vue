@@ -101,6 +101,7 @@ watch(() => props.modelValue, (nVal,oval) => {
           errorMessage.value = ''
         }
       break;
+        
       case 'required':      
         if(CoreValidations.validEmpty(props.modelValue)) {
           access.value = true
@@ -110,6 +111,7 @@ watch(() => props.modelValue, (nVal,oval) => {
           errorMessage.value = 'Field is required'
         }
       break;
+        
       case 'length':   
         const result = CoreValidations.validLength(props.modelValue, props.minLength, props.maxLength)   
         if(result.isValid) {
