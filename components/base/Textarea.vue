@@ -136,8 +136,8 @@ watch(
 </script>
 
 <style scoped lang="scss">
-input {
-  padding: 0 7px;
+textarea {
+  padding: 10px 7px;
   outline: none;
   border: 1px solid #8481812f;
   border-radius: 6px;

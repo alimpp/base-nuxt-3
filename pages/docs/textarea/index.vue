@@ -94,8 +94,8 @@ const username = ref(null)
         validate="true"
         v-model:access="access"
         rules="length"
-        minLength="20"
-        maxLength="300"
+        minLength="3"
+        maxLength="20"
       />
       <BaseTextarea
         label="bio"
@@ -104,8 +104,8 @@ const username = ref(null)
         validate="true"
         v-model:access="access"
         rules="length"
-        minLength="3"
-        maxLength="20"
+        minLength="20"
+        maxLength="300"
       />
       <BaseButton class="mt-10" name="clicked" @click="cliked" />
     </div>
