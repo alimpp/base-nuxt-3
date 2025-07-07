@@ -86,4 +86,8 @@ const props = defineProps({
   cursor: pointer;
   border: none;
 }
+
+.disabled {
+  cursor: not-allowed;
+}
 </style>

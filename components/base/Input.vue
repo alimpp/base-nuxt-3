@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column w-100">
-    <span class="pb-5 f-s-12 f-w-500" :class="{ 'color-danger': errorMessage }">
+    <span class="pb-5 f-s-13 f-w-600" :class="{ 'color-danger': errorMessage }">
       {{ label }}
     </span>
     <input

@@ -7,6 +7,9 @@
 .slid-up-animation-8 {
   animation: 0.8s slid-up;
 }
+.slid-up-animation-8 {
+  animation: 0.8s slid-down;
+}
 
 .slid-left-animation-5 {
   animation: 0.5s slid-left;
@@ -78,5 +81,14 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes slid-down {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
