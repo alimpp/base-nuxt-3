@@ -17,7 +17,7 @@
       }"
       :disabled="disabled"
       :placeholder="placeholder"
-      class="mt-2"
+      class="mt-2 cursor-pointer"
       readonly
     />
     <span v-if="errorMessage" class="color-danger f-s-12 f-w-500 pt-5">
@@ -35,12 +35,13 @@
                </span>
             </div> 
             <div class="flex align-center justify-end w-50">
-                <BaseIcon @click="listState = !listState" name="line-md:menu-to-close-alt-transition" />
+                <BaseIcon class="cursor-pointer" @click="listState = !listState" name="line-md:menu-to-close-alt-transition" />
             </div>
        </div>
-       <input class="search-input ccolor-white" placeholder="Search" />
+       <input class="search-input color-light" placeholder="Search" v-model="searchValue" />
+       <BaseDivider />
        <div class="list">
-        <div class="cursor-pointer flex align-center f-s-14 f-w-600 py-12 px-10 mt-5 border-rounded bg-dark" v-for="(item, index) in items" 
+        <div class="fade-animation-1s cursor-pointer flex align-center f-s-14 f-w-600 py-12 px-10 mt-5 border-rounded bg-dark" v-for="(item, index) in itemsDataSource" 
        :key="index" @click="handleSelect(item.name)" :class="{'bg-selected': item.name == modelValue}">
          <BaseIcon class="mx-2" name="ei:check" v-if="item.name == modelValue" /> {{ item.name }}
        </div>
@@ -56,9 +57,12 @@ const emit = defineEmits(["update:access"]);
 const access = defineModel('access')
 
 const listState = ref(false)
+const searchValue = ref('')
 
 const openList = () => {
+  searchValue.value = ''
   listState.value = !listState.value
+  
 }
 
 const props = defineProps({
@@ -135,6 +139,13 @@ const handleSelect = (item) => {
     emit('update:modelValue', item);
     if (!props.mutli) listState.value = !listState.value
 }
+
+const itemsDataSource = computed(() => {
+  const searchTerm = searchValue.value.toLowerCase();
+  return props.items.filter((item) => {
+    return item?.name?.toLowerCase().includes(searchTerm);
+  });
+})
 </script>
 
 <style scoped lang="scss">
@@ -193,8 +204,14 @@ input {
     flex-direction: column;
     padding: 10px 0;
 }
+.list::-webkit-scrollbar {
+  display: none;
+}
 
 .bg-selected {
     background: #404040;
+}
+.color-light {
+  color: #fff;
 }
 </style>
