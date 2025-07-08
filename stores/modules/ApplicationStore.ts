@@ -3,7 +3,6 @@ import { StoreManager } from "../core/StoreManager";
 
 interface IApplication {
   loader: boolean,
-  animation: string
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -19,13 +18,11 @@ export class ApplicationStore extends BaseStore<IApplication> {
   private constructor() {
     super("application", {
       loader: false,
-      animation: ""
     });
     StoreManager.register(this);
   }
 
   public reset() {
     this._state.loader = false;
-    this._state.animation = ""
   }
 }

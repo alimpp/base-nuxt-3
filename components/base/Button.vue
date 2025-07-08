@@ -1,10 +1,10 @@
 <template>
-  <button
-    class="base-button"
-    :style="{ width: width, height: height }"
-    :class="[bg, color, border]"
-    :disabled="disabled || loading"
-  >
+    <button
+      class="base-button"
+      :style="{ width: width, height: height }"
+      :class="[bg, color, border]"
+      :disabled="disabled || loading"
+    >
     <span :class="[fontSize, fontWeight, color]" class="px-2" v-if="name"> {{ name }}</span>
     <BaseIcon name="line-md:loading-loop" v-if="loading" />
     <BaseIcon
@@ -87,7 +87,9 @@ const props = defineProps({
   border: none;
 }
 
-.disabled {
+.base-button:disabled,
+.disabled-button {
   cursor: not-allowed;
+  opacity: 0.7;
 }
 </style>
