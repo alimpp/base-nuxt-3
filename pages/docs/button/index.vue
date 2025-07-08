@@ -33,7 +33,7 @@
       >Disabled Button Style</span
     >
     <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
-      <BaseButton name="button" disabled="true" />
+      <BaseButton name="button" :disabled="true" />
     </div>
     <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseButton name="button" disabled="true" />'/>
     <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3"

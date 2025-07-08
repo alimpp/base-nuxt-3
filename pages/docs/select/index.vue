@@ -1,24 +1,30 @@
 <template>
-  <BaseInput label="Email" placeholder="Enter Email" v-model="form.email" validate="true" v-model:access="access" rules="email" />
-  <BaseInput label="Password" placeholder="Enter Password" v-model="form.password" validate="true" v-model:access="access" rules="length" minLength="3" maxLength="20" />
-  <BaseButton class="mt-10" name="clicked" @click="cliked" />
+  <div class="flex flex-column">
+    <BaseBreadCrumbs />
+    <span class="f-s-14 f-w-600 pt-20 slid-up-animation-3"
+        >Base Select</span>
+    <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
+      <BaseSelect v-model="user" label="User" title="Select User" :items="items" />
+    </div>
+  </div>
 </template>
 
 <script setup>
-const access = ref(true)
-const form = ref({
-  email: '',
-  password: ''
-})
-
-const cliked = () => {
-  if(form.value.email && form.value.password) {
-   access.value ? alert('valid') : alert('not valid')
-  } else {
-    alert('not valid')
-  }
-}
 definePageMeta({
   layout: "docs",
 });
+
+const user = ref('')
+
+const items = ref([
+  {id: 0, name: "jackson"},
+  {id: 1, name: "nika"},
+  {id: 2, name: "nikol"},
+  {id: 3, name: "jhon"},
+  {id: 4, name: "mika"},
+])
 </script>
+
+<style scoped>
+
+</style>
