@@ -13,10 +13,17 @@
         <NuxtPage />
       </div>
     </div>
+    <Loader v-show="loaderState" />
   </div>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore()
+
+const loaderState = computed(() => {
+  return applicationStore._state.loader
+})
+
 const sideMenuState = ref(true);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;

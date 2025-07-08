@@ -1,15 +1,15 @@
-import { UserStore } from "./modules/UserStore";
-import { TaskStore } from "./modules/TaskStore";
 import { ApplicationStore } from "./modules/ApplicationStore"
+import { UserStore } from "./modules/UserStore";
+import { UsersStore } from "./modules/UsersStore";
 
 export const initializeStores = () => {
+  ApplicationStore.getInstance();
   UserStore.getInstance();
-  TaskStore.getInstance();
-  ApplicationStore.getInstance()
+  UsersStore.getInstance();
 };
 
 initializeStores();
 
-export const useUserStore = () => UserStore.getInstance();
-export const useTaskStore = () => TaskStore.getInstance();
 export const useApplicationStore = () => ApplicationStore.getInstance()
+export const useUserStore = () => UserStore.getInstance();
+export const useUsersStore = () => UsersStore.getInstance();

@@ -22,6 +22,16 @@ export class ApplicationStore extends BaseStore<IApplication> {
     StoreManager.register(this);
   }
 
+  setLoader(path: string) {
+    this._state.loader = true
+    setTimeout(() => {
+       navigateTo(path)
+    }, 900);
+    setTimeout(() => {
+      this._state.loader = false
+    }, 2000);
+  }
+
   public reset() {
     this._state.loader = false;
   }

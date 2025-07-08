@@ -10,6 +10,8 @@
 </template>
 
 <script setup>
+import { usersController } from '~/controllers/Users';
+
 definePageMeta({
   layout: "docs",
 });
@@ -23,6 +25,10 @@ const items = ref([
   {id: 3, name: "jhon"},
   {id: 4, name: "mika"},
 ])
+
+onMounted( async () => {
+  await usersController.allUsers()
+})
 </script>
 
 <style scoped>

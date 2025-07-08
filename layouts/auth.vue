@@ -5,7 +5,7 @@
           <img src="/public/logo/logo.png" alt="logo" width="100" height="100">
           <NuxtPage />
          </div>
-         <Loader v-if="loaderState" />
+         <Loader v-show="loaderState" mode="downToUp" />
       </div>
     </div>
 </template>
