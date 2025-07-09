@@ -18,8 +18,6 @@ definePageMeta({
   layout: "auth",
 });
 
-const applicationStore = useApplicationStore()
-
 const access = ref(false)
 
 const form = ref({
@@ -31,7 +29,5 @@ const disabled = computed(() => {
    return !access.value || !form.value.email || !form.value.password ? true : false
 })
 
-const login = () => {
-    applicationStore.setLoader('/docs/button')
-}
+const login = () => {}
 </script>

@@ -2,6 +2,13 @@ import { UsersDataModel } from '~/model/Users'
 
 const usersStore = useUsersStore()
 
+interface User {
+  id: string;
+  name: string;
+  username: string,
+  email: string
+}
+
 export class UsersController extends UsersDataModel {
 
     constructor() {
@@ -17,6 +24,14 @@ export class UsersController extends UsersDataModel {
         console.error('Failed to fetch users:', error);
         throw error;
     }
+  }
+
+  getUserById(id: number | string) {
+    return this.findUserById(id)
+  }
+
+  createUser(user: User) {
+    this.createNewUser(user)
   }
 
 }

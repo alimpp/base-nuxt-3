@@ -5,17 +5,11 @@
           <img src="/public/logo/logo.png" alt="logo" width="100" height="100">
           <NuxtPage />
          </div>
-         <Loader v-show="loaderState" mode="downToUp" />
       </div>
     </div>
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore()
-
-const loaderState = computed(() => {
-  return applicationStore._state.loader
-})
 </script>
 
 <style scoped>
