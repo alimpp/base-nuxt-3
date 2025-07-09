@@ -132,7 +132,17 @@ const props = defineProps({
 });
 
 watch(() => props.modelValue, (nVal,oval) => {
-  
+  if(props.validate) {
+    if(props.rules == 'required') {
+      if(!props.modelValue) {
+        access.value = false
+        errorMessage.value = 'Field is required'
+      } else {
+        access.value = true
+        errorMessage.value = ''
+      }
+    }
+  }
 }, {deep: true})
 
 const handleSelect = (item) => {
