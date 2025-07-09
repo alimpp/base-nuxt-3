@@ -3,9 +3,29 @@
     <BaseBreadCrumbs />
     <span class="f-s-14 f-w-600 pt-20 slid-up-animation-3"
         >Base Select</span>
+        <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3"
+      >Normal Base Select</span
+    >
     <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
       <BaseSelect v-model="user" label="User" title="Select User" :items="items" />
     </div>
+    <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseSelect v-model="user" label="User" title="Select User" :items="items" />
+const user = ref("")
+const items = ref([
+  {id: 0, name: "jackson"},
+  {id: 1, name: "nika"},
+  {id: 2, name: "nikol"},
+  {id: 3, name: "jhon"},
+  {id: 4, name: "mika"},
+])
+    '/>
+       <span class="f-s-12 f-w-600 pt-20 slid-up-animation-3"
+      >Disabled Base Select</span
+    >
+    <div class="flex flex-wrap w-100 mt-15 slid-up-animation-3">
+      <BaseSelect disabled="true" v-model="user" label="User" title="Select User" :items="items" />
+    </div>
+    <CodeRender class="mt-15 slid-up-animation-3" sourceCode='<BaseSelect disabled="true" v-model="user" label="User" title="Select User" :items="items" />'/>
   </div>
 </template>
 
