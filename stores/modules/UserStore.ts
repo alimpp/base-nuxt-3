@@ -1,17 +1,11 @@
 import { BaseStore } from "../core/BaseStore";
 import { StoreManager } from "../core/StoreManager";
+import type { IUser } from '@/types/User'
 
 interface IUserState {
-  currentUser: null | {
-    id: string;
-    name: string;
-    email: string;
-  };
-  users: Array<{
-    id: string;
-    name: string;
-  }>;
-  loading: boolean;
+  user: IUser,
+  jwtToken: string,
+  isAuthenticated: boolean
 }
 
 export class UserStore extends BaseStore<IUserState> {
@@ -26,39 +20,47 @@ export class UserStore extends BaseStore<IUserState> {
 
   private constructor() {
     super("user", {
-      currentUser: null,
-      users: [],
-      loading: false,
+      user: {
+        id: 0,
+        fristname: '',
+        lastname: '',
+        email: '',
+        avatarUrl: '',
+        bio: '',
+        fullname: '',
+        fristChar: ''
+      },
+      jwtToken: '',
+      isAuthenticated: false
     });
 
     StoreManager.register(this);
   }
 
-  public get isAuthenticated() {
-    return this.createGetter((state) => state.currentUser !== null);
+  setJwt(jwt: string) {
+    this._state.jwtToken = jwt
   }
 
-  public get userList() {
-    return this.createGetter((state) => state.users);
+  setUser(user: IUser) {
+    this._state.user = user
   }
 
-  public async fetchUsers() {
-    this._state.loading = true;
-    console.log("fetchUsers action calling");
-    this.setCurrentUser({
-      id: "123456789",
-      name: "jhon doe",
-      email: "jhon@gmail.com",
-    });
-  }
-
-  public setCurrentUser(user: IUserState["currentUser"]) {
-    this._state.currentUser = user;
+  setAuthenticated(flag: boolean) {
+    this._state.isAuthenticated = flag
   }
 
   public reset() {
-    this._state.currentUser = null;
-    this._state.users = [];
-    this._state.loading = false;
+    this._state.user = {
+      id: 0,
+      fristname: '',
+      lastname: '',
+      email: '',
+      avatarUrl: '',
+      bio: '',
+      fullname: '',
+      fristChar: ''
+    },
+    this._state.jwtToken = ''
+    this._state.isAuthenticated = false
   }
 }

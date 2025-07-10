@@ -10,6 +10,15 @@ export abstract class BaseModel<T extends { id: string }> {
     return data ? JSON.parse(data) : [];
   }
 
+  public saveItem(item: any): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(item));
+  }
+
+  public readByStorageKey(storageKey: string) {
+    const result = localStorage.getItem(storageKey)
+    return result ? JSON.parse(result) : null
+  }
+
   public saveAllItems(items: T[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(items));
   }

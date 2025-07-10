@@ -2,14 +2,20 @@
     <div class="auth-layout">
       <div class="glass-content">
          <div class="content">
-          <img src="/public/logo/black-cat-logo.png" alt="logo" width="150" height="150">
-          <NuxtPage />
+            <img src="/public/logo/black-cat-logo.png" alt="logo" width="150" height="150">
+            <NuxtPage />
          </div>
       </div>
+      <BaseAlert v-if="alert.timeout > 0" />
     </div>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore()
+
+const alert = computed(() => {
+    return applicationStore._state.alert
+})
 </script>
 
 <style scoped>

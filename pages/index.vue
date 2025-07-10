@@ -1,9 +1,13 @@
 <template>
     <div>
-        index
+        {{ profile }}
     </div>
 </template>
 
 <script setup>
+const userStore = useUserStore();
 
+const profile = computed(() => {
+    return userStore._state.user
+})
 </script>

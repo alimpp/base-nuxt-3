@@ -52,6 +52,26 @@ export class ApplicationStore extends BaseStore<IApplication> {
      this._state.theme = theme
   }
 
+  public setAlert(type: string, title: string, text: string ,timeout: number) {
+    this._state. alert = {
+      title: title,
+      text: text,
+      type: type,
+      id: this.generateId(),
+      timeout: timeout
+    }
+  }
+
+  public resetAlert() {
+    this._state. alert = {
+        title: '',
+        text: '',
+        type: '',
+        id: '',
+        timeout: 0
+    }
+  }
+
   public reset() {
     this._state.theme = "dark";
     this._state.toastMessages = []
@@ -62,5 +82,9 @@ export class ApplicationStore extends BaseStore<IApplication> {
         id: '',
         timeout: 0
     }
+  }
+
+  private generateId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
   }
 }

@@ -13,7 +13,6 @@
         <NuxtPage />
       </div>
     </div>
-    <Loader v-show="loaderState" mode="upToDown" />
   </div>
 </template>
 
