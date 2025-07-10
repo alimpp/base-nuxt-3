@@ -1,3 +1,5 @@
-<template></template>
+<template>
+    <LayoutsApp />
+</template>
 
 <script setup></script>

@@ -1,8 +1,8 @@
 <template>
    <div class="w-100 flex flex-column fade-animation-1s">
         <div class="w-100 flex flex-column justify-start">
-                <span class="f-s-22 f-w-600">Create New Account</span>
-                <span class="f-s-12 f-w-600 color-primary pt-5">You Can Create New Profile</span>
+                <span class="f-s-22 f-w-600">Create Black Cat Account</span>
+                <span class="f-s-12 f-w-600 color-primary pt-5">Create New Profile</span>
             </div>
             <BaseInput validate="true" v-model:access="access" v-model="form.fristname" rules="length" min-length="3" max-length="30" class="mt-15" label="Fristname" placeholder="Please Enter Your Fristname" />
             <BaseInput validate="true" v-model:access="access" v-model="form.lastname" rules="length" min-length="3" max-length="30" class="mt-10" label="Lastname" placeholder="Please Enter Your Lastname" />

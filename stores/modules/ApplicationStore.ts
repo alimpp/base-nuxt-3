@@ -1,8 +1,26 @@
 import { BaseStore } from "../core/BaseStore";
 import { StoreManager } from "../core/StoreManager";
 
+interface IToast {
+  title: string;
+  text: string;
+  type: string;
+  id: string | number;
+  timeout: number
+}
+
+interface IAlert {
+  title: string;
+  text: string;
+  type: string;
+  id: string | number;
+  timeout: number
+}
+
 interface IApplication {
-  loader: boolean,
+  theme: string,
+  toastMessages: Array<IToast>
+  alert: IAlert
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -17,22 +35,32 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   private constructor() {
     super("application", {
-      loader: false,
+      theme: "dark",
+      toastMessages: [],
+      alert: {
+        title: '',
+        text: '',
+        type: '',
+        id: '',
+        timeout: 0
+      }
     });
     StoreManager.register(this);
   }
 
-  setLoader(path: string) {
-    this._state.loader = true
-    setTimeout(() => {
-       navigateTo(path)
-    }, 900);
-    setTimeout(() => {
-      this._state.loader = false
-    }, 2000);
+  setTheme(theme: string) {
+     this._state.theme = theme
   }
 
   public reset() {
-    this._state.loader = false;
+    this._state.theme = "dark";
+    this._state.toastMessages = []
+    this._state. alert = {
+        title: '',
+        text: '',
+        type: '',
+        id: '',
+        timeout: 0
+    }
   }
 }

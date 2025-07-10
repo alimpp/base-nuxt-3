@@ -2,7 +2,7 @@
     <div class="auth-layout">
       <div class="glass-content">
          <div class="content">
-          <img src="/public/logo/logo.png" alt="logo" width="100" height="100">
+          <img src="/public/logo/black-cat-logo.png" alt="logo" width="150" height="150">
           <NuxtPage />
          </div>
       </div>
