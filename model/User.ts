@@ -23,7 +23,7 @@ export class UserDataModel extends BaseModel<IUser & { id: string }> {
         avatarUrl,
         bio: user.bio,
     };
-    this.saveAllItems(result)
+    this.saveItem(result)
     return result
   }
 }

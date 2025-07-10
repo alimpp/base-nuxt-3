@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-100 h-100-dvh bg-app-dark overflow-hidden">
+  <div :class="{'bg-app-dark': appTheme == 'dark', 'bg-app-light': appTheme == 'light'}" class="flex w-100 h-100-dvh overflow-hidden">
     <div class="flex">
       <LayoutsAppSidebar
         @chnageSideMenuState="chnageSideMenuState"
@@ -21,6 +21,11 @@ const sideMenuState = ref(false);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
 };
+
+const applicationStore = useApplicationStore()
+const appTheme = computed(() => {
+    return applicationStore._state.theme
+})
 </script>
 
 <style scoped>

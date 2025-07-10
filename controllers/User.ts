@@ -38,7 +38,9 @@ export class UserController extends UserDataModel {
     const token = getCookie("token");
     userStore.setJwt(token ? token : '')
     const user = this.readByStorageKey('user')
-    userStore.setUser(user)
+    if(user) {
+      userStore.setUser(user)
+    }
     await $fetch("/api/users/profile", {
       method: "GET",
       headers: {

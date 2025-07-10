@@ -1,10 +1,11 @@
 <template>
   <div
-    class="container flex flex-column custom-style bg-app-dark"
+    class="container flex flex-column custom-style"
     v-if="isOpen"
+    :class="{'bg-dark': appTheme == 'dark', 'bg-app-light': appTheme == 'light'}"
   >
     <div class="w-100 flex justify-end py-10 close-container">
-      <IconsClose class="cursor-pointer" @click="chnageSideMenuState" />
+      <BaseIcon class="cursor-pointer mx-20 mt-10" @click="chnageSideMenuState" name="line-md:menu-to-close-alt-transition" />
     </div>
     <div class="flex flex-column px-10 pt-10">
       <div class="flex justify-center">
@@ -21,10 +22,9 @@
         <BaseIcon
           width="18px"
           name="fa6-solid:hand-point-right"
-          color="#fff"
           v-if="route.path == item.path"
         />
-        <BaseIcon width="18px" name="mdi:hand-back-right" color="#fff" v-else />
+        <BaseIcon width="18px" name="mdi:hand-back-right" v-else />
         <span class="px-5">
           {{ item.name }}
         </span>
@@ -66,6 +66,11 @@ const navigate = (path) => {
     emit("chnageSideMenuState");
   }
 };
+
+const applicationStore = useApplicationStore()
+const appTheme = computed(() => {
+    return applicationStore._state.theme
+})
 </script>
 
 <style scoped lang="scss">
@@ -78,6 +83,7 @@ const navigate = (path) => {
 .container {
   width: 350px;
   height: 100dvh;
+  border-radius: 0 50px 50px 0;
 }
 
 .close-container {
