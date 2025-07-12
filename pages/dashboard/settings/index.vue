@@ -45,4 +45,8 @@ const setTheme = (theme) => {
 const appTheme = computed(() => {
     return applicationStore._state.theme
 })
+
+definePageMeta({
+  middleware: "auth",
+});
 </script>

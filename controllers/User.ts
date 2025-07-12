@@ -1,5 +1,5 @@
 import { UserDataModel } from '~/model/User'
-import { useCookie } from "@/composables/useCookie";
+// import { useCookie } from "~/utils/useCookie";
 
 import type { IUser, ILoginForm } from '@/types/User'
 
@@ -14,15 +14,14 @@ export class UserController extends UserDataModel {
   }
 
   async login(loginForm: ILoginForm) {
-    const { setCookie } = useCookie();
-
     await $fetch("/api/auth/login", {
       method: "POST",
       body: loginForm,
     })
       .then((res: unknown) => {
         const response = res as { token: string };
-        setCookie("token", response.token, { expires: 7 });
+        const tokenCookie = useCookie('token', { maxAge: 60 * 60 * 24 });
+        tokenCookie.value = response.token;
         navigateTo("/");
       })
       .catch((err) => {
@@ -34,9 +33,8 @@ export class UserController extends UserDataModel {
   }
 
   async profile() {
-    const { getCookie } = useCookie();
-    const token = getCookie("token");
-    userStore.setJwt(token ? token : '')
+    const token = useCookie('token');        
+    userStore.setJwt(token.value ? token.value : '')
     const user = this.readByStorageKey('user')
     if(user) {
       userStore.setUser(user)
@@ -44,7 +42,7 @@ export class UserController extends UserDataModel {
     await $fetch("/api/users/profile", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token.value}`,
       },
     })
     .then((response: any) => {
