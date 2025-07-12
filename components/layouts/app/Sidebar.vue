@@ -21,10 +21,8 @@
       >
         <BaseIcon
           width="18px"
-          name="fa6-solid:hand-point-right"
-          v-if="route.path == item.path"
+          :name="item.icon"
         />
-        <BaseIcon width="18px" name="mdi:hand-back-right" v-else />
         <span class="px-5">
           {{ item.name }}
         </span>
@@ -51,12 +49,9 @@ const chnageSideMenuState = () => {
 };
 
 const items = ref([
-  { id: 0, name: "Interview", path: "/docs/interview", icon: "" },
-  { id: 1, name: "Button", path: "/docs/button", icon: "" },
-  { id: 2, name: "Text Input", path: "/docs/input", icon: "" },
-  { id: 3, name: "Text Area", path: "/docs/textarea", icon: "" },
-  { id: 4, name: "Avatar", path: "/docs/avatar", icon: "" },
-  { id: 5, name: "Select Items", path: "/docs/select", icon: "" },
+  { id: 0, name: "Friends", path: "/dashboard/friends", icon: "line-md:emoji-grin" },
+  { id: 1, name: "Posts", path: "/dashboard/posts", icon: "line-md:text-box-multiple" },
+  { id: 2, name: "Notes", path: "/dashboard/notes", icon: "line-md:file-document-twotone" },
 ]);
 
 const navigate = (path) => {
