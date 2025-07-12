@@ -3,15 +3,15 @@
       <BaseBreadCrumbs />
       <BaseTab class="mt-15" :tabs="tabs" initial-tab="1" duration="400">
         <template #1>
-          <div>Content for Tab 1</div>
+          <FriendsList />
         </template>
         
         <template #2>
-          <div>Content for Tab 2</div>
+          <FriendsRequests />
         </template>
         
         <template #3>
-          <div>Content for Tab 3</div>
+          <FriendsSendRequest />
         </template>
     </BaseTab>
     </div>

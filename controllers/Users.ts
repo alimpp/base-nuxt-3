@@ -1,5 +1,7 @@
 import { UsersDataModel } from '~/model/Users'
 
+import type { IUsersServerResponse, IUserList } from '../types/Users'
+
 const usersStore = useUsersStore()
 
 interface User {
@@ -16,22 +18,20 @@ export class UsersController extends UsersDataModel {
     }
 
   async allUsers(): Promise<void> {
+    const token = useCookie('token')
     try {
-        const requestResponse = await $fetch('/api/users/all')
-        const parsedList = this.generateUsers(requestResponse)
-        usersStore.setUsers(parsedList)
+      const requestResponse: IUsersServerResponse = await $fetch('/api/users/all',{
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      const parsedList: IUserList[] = this.generateUsers(requestResponse)
+      usersStore.setUsers(parsedList)
     } catch (error) {
-        console.error('Failed to fetch users:', error);
-        throw error;
+      console.error('Failed to fetch users:', error);
+      throw error;
     }
-  }
-
-  getUserById(id: number | string) {
-    return this.findUserById(id)
-  }
-
-  createUser(user: User) {
-    this.createNewUser(user)
   }
 
 }

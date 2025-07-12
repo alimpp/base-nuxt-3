@@ -1,5 +1,4 @@
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
 
   const token = event.req.headers["authorization"];
 

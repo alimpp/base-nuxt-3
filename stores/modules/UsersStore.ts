@@ -1,13 +1,11 @@
 import { BaseStore } from "../core/BaseStore";
 import { StoreManager } from "../core/StoreManager";
 
+import type { IUserList } from '@/types/Users'
+
+
 interface IUsersState {
-  users: Array<{
-    id: string;
-    name: string;
-    username: string,
-    email: string
-  }>;
+  users: IUserList[]
 }
 
 export class UsersStore extends BaseStore<IUsersState> {
@@ -21,18 +19,18 @@ export class UsersStore extends BaseStore<IUsersState> {
   }
 
   private constructor() {
-    super("user", {
+    super("users", {
       users: [],
     });
 
     StoreManager.register(this);
   }
 
-  setUsers(users: IUsersState['users']) {
+  setUsers(users: IUserList[]) {
     this._state.users = users
   }
 
-  get users(): IUsersState['users'] {
+  get users(): IUserList[] {
     return this._state.users;
   }
 
