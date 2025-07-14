@@ -4,18 +4,11 @@ import type { IUsersServerResponse, IUserList } from '../types/Users'
 
 const usersStore = useUsersStore()
 
-interface User {
-  id: string;
-  name: string;
-  username: string,
-  email: string
-}
-
 export class UsersController extends UsersDataModel {
 
-    constructor() {
-        super()
-    }
+  constructor() {
+    super()
+  }
 
   public getCacheData() {
     const users = this.getAllItems()
