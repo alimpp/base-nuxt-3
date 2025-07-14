@@ -138,7 +138,6 @@ onBeforeUnmount(() => {
 .tabs-header {
   display: inline-flex;
   position: relative;
-  border-bottom: 1px solid rgba(106, 105, 105, 0.1);
   min-width: 100%;
   white-space: nowrap;
   padding-bottom: 2px; /* Space for scrollbar */
@@ -163,6 +162,7 @@ onBeforeUnmount(() => {
   font-weight: 600;
   color: var(--primary-color);
   background: #7d7be5;
+  color: #fff;
   border-radius: 10px;
 }
 

@@ -10,7 +10,7 @@
       />
     </div>
     <div class="flex flex-wrap justify-center" v-if="pageLoading">
-      <SkeletonSendFriendRequest />
+      <FriendsSkeletonSendRequest v-for="n in 20" class="mx-5" />
     </div>
     <div class="w-100 flex flex-wrap justify-center" v-else>
       <FriendsCardSendRequest v-for="(data, index) in dataSource" :key="index" :user="data" />

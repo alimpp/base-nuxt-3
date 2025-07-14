@@ -1,10 +1,17 @@
 <template>
-  <div class="border-rounded base-card base-card-dark" :class="[px, py]">
+  <div class="border-rounded base-card" 
+   :class="[{'base-card-dark': appTheme == 'dark', 'base-card-light': appTheme == 'light'},px, py]"
+  >
     <slot></slot>
   </div>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore()
+const appTheme = computed(() => {
+    return applicationStore._state.theme
+})
+
 const props = defineProps({
   bgClass: {
     type: String,
