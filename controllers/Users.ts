@@ -17,10 +17,16 @@ export class UsersController extends UsersDataModel {
         super()
     }
 
+  public getCacheData() {
+    const users = this.getAllItems()
+    if(users) {
+      usersStore.setUsers(users)
+    }
+  }  
+
   async allUsers(): Promise<void> {
     const token = useCookie('token')
-    const users = this.getAllItems()
-    usersStore.setUsers(users)
+    this.getCacheData()
     try {
       const requestResponse: IUsersServerResponse = await $fetch('/api/users/all',{
         method: "GET",
