@@ -29,6 +29,9 @@ export class UsersDataModel extends BaseModel<IUserList & { id: string }> {
         avatarUrl: avatarUrl,
         bio: element.bio,
         avatarColor: "#" + Math.floor(Math.random() * 16777215).toString(16),
+        youSendRequest: element.youSendRequest,
+        hasFriendRequest: element.hasFriendRequest,
+        isFriend: element.isFriend
       };
       userlist.push(user);
     }

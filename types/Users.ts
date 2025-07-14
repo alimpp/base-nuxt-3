@@ -21,4 +21,7 @@ export interface IUserList {
   avatarUrl: string;
   bio: string;
   avatarColor: string;
+  youSendRequest: boolean;
+  hasFriendRequest: boolean;
+  isFriend: boolean;
 }

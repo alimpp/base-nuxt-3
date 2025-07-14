@@ -10,8 +10,7 @@
     <BaseIcon
       :name="icon"
       v-if="!loading && icon"
-      :width="iconWidth"
-      :height="iconHeight"
+      :size="iconSize"
     />
   </button>
 </template>
@@ -62,13 +61,9 @@ const props = defineProps({
     type: String,
     default: "35px",
   },
-  iconWidth: {
+  iconSize: {
     type: String,
-    default: "18",
-  },
-  iconHeight: {
-    type: String,
-    default: "18",
+    default: "20px",
   },
   padding: {
     type: String,

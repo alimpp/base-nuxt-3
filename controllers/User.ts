@@ -32,7 +32,7 @@ export class UserController extends UserDataModel {
 
   }
 
-  async profile() {
+  async profile(): Promise<void> {
     const token = useCookie('token');        
     userStore.setJwt(token.value ? token.value : '')
     const user = this.readByStorageKey('user')

@@ -19,6 +19,8 @@ export class UsersController extends UsersDataModel {
 
   async allUsers(): Promise<void> {
     const token = useCookie('token')
+    const users = this.getAllItems()
+    usersStore.setUsers(users)
     try {
       const requestResponse: IUsersServerResponse = await $fetch('/api/users/all',{
         method: "GET",

@@ -1,5 +1,5 @@
 <template>
-  <BaseCard class="mt-10 fade-animation py-10" bgClass="bg-primary-white">
+  <BaseCard py="py-15" px="px-15" class="mt-10 fade-animation py-10" bgClass="bg-primary-white">
     <div class="flex flex-column align-center justify-center w-100">
       <BaseAvatar
         :character="user.fristChar"
@@ -23,23 +23,19 @@
         color="color-primary"
         @click="handleSendRequest(user.id)"
         name="Send Request"
-      >
-        <template #iconLeft>
-          <IconsSpinner color="#7d7be5" class="mx-4" v-if="loading" />
-          <IconsFriendAdd color="#7d7be5" class="mx-4" width="18px" v-else />
-        </template>
-      </BaseButton>
+        icon="solar:user-plus-broken"
+        :loading="loading"
+        iconSize="22px"
+      />
       <BaseButton
         width="40px"
         bg="bg-info"
         color="color-primary"
         class="mx-5"
         @click="navigateTo(`/user/viewProfile/${user.id}`)"
-      >
-        <template #iconLeft>
-          <IconsViewProfile color="#7d7be5" class="mx-4" width="18px" />
-        </template>
-      </BaseButton>
+        icon="solar:user-hand-up-broken"
+        iconSize="22px"
+      />
     </div>
     <div
       class="w-100 flex align-center justify-center mt-8"
@@ -50,22 +46,17 @@
         bg="bg-none"
         color="color-primary"
         name="Pendding Accept"
-      >
-        <template #iconLeft>
-          <IconsPendding color="#7d7be5" class="mx-4" />
-        </template>
-      </BaseButton>
+        icon="eos-icons:three-dots-loading"
+      />
       <BaseButton
         width="40px"
         bg="bg-info"
         color="color-primary"
         class="mx-5"
         @click="navigateTo(`/user/viewProfile/${user.id}`)"
-      >
-        <template #iconLeft>
-          <IconsViewProfile color="#7d7be5" class="mx-4" width="18px" />
-        </template>
-      </BaseButton>
+        icon="solar:user-hand-up-broken"
+        iconSize="22px"
+      />
     </div>
     <div
       class="w-100 flex justify-center align-center justify-end mt-8"
@@ -88,11 +79,9 @@
         color="color-primary"
         class="mx-5"
         @click="navigateTo(`/user/viewProfile/${user.id}`)"
-      >
-        <template #iconLeft>
-          <IconsViewProfile color="#7d7be5" class="mx-4" width="18px" />
-        </template>
-      </BaseButton>
+        icon="solar:user-hand-up-broken"
+        iconSize="22px"
+      />
     </div>
     <div
       class="w-100 flex justify-center align-center justify-end mt-8"
@@ -104,18 +93,13 @@
         color="color-primary"
         class="mx-5"
         @click="navigateTo(`/user/viewProfile/${user.id}`)"
-      >
-        <template #iconLeft>
-          <IconsViewProfile color="#7d7be5" class="mx-4" width="18px" />
-        </template>
-      </BaseButton>
+        icon="fa-solid:street-view"
+      />
     </div>
   </BaseCard>
 </template>
 
 <script setup>
-import { RequestControllerModule } from "~/controllers/request";
-
 const props = defineProps({
   user: {
     type: Object,
@@ -128,7 +112,10 @@ const loading = ref(false);
 
 const handleSendRequest = async (id) => {
   loading.value = true;
-  await RequestControllerModule.sendRequest(id);
-  loading.value = false;
+  // await RequestControllerModule.sendRequest(id);
 };
+
+onMounted(() => {
+  console.log(props.user);
+})
 </script>
