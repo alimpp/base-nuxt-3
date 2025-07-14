@@ -1,5 +1,4 @@
 import { UserDataModel } from '~/model/User'
-// import { useCookie } from "~/utils/useCookie";
 
 import type { IUser, ILoginForm } from '@/types/User'
 
