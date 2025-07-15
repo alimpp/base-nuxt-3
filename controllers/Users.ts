@@ -27,7 +27,7 @@ export class UsersController extends UsersDataModel {
           Authorization: `Bearer ${token.value}`,
         },
       })
-      const parsedList: IUserList[] = this.generateUsers(requestResponse)
+      const parsedList: IUserList[] = await this.generateUsers(requestResponse)
       usersStore.setUsers(parsedList)
     } catch (error) {
       console.error('Failed to fetch users:', error);

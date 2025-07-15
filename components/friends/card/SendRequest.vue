@@ -1,5 +1,5 @@
 <template>
-  <BaseCard py="py-15" px="px-15" class="mt-10 fade-animation py-10" bgClass="bg-primary-white">
+  <BaseCard py="py-15" class="mt-10 fade-animation py-10" bgClass="bg-primary-white">
     <div class="flex flex-column align-center justify-center w-100">
       <BaseAvatar
         :character="user.fristChar"
@@ -116,6 +116,6 @@ const handleSendRequest = async (id) => {
 };
 
 onMounted(() => {
-  console.log(props.user);
+
 })
 </script>

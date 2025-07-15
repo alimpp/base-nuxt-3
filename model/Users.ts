@@ -2,21 +2,20 @@ import { BaseModel } from "./Base";
 
 import type { IUsersServerResponse, IUserList } from '../types/Users'
 
-
-
+import { filesController } from '@/controllers/Files'
 export class UsersDataModel extends BaseModel<IUserList & { id: string }> {
 
   constructor() {
     super('users');
   }
 
-  generateUsers(apiResponse: IUsersServerResponse): IUserList[] {
+  async generateUsers(apiResponse: IUsersServerResponse): Promise<IUserList[]> {
     if (!Array.isArray(apiResponse)) {
       throw new Error('Invalid users data format');
     }
     let userlist = [];
     for (const element of apiResponse) {
-      const avatarUrl = "";
+      const avatarUrl = element.avatarUrl ? await filesController.downloadFileById(element.avatarUrl) : '';
       let user: IUserList & { id: string } = {
         fullname: element.fristname + " " + element.lastname,
         fristChar:

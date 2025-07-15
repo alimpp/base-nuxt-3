@@ -26,7 +26,7 @@
           </span>
         </div>
         <BaseDivider class="mt-15" />
-        <div class="flex align-center mt-15 cursor-pointer">
+        <div @click="navigateTo('/dashboard/settings/profile')" class="flex align-center mt-15 cursor-pointer">
             <BaseIcon name="oui:user" />
             <span class="f-s-14 f-w-500 px-5">Profile</span>
         </div>

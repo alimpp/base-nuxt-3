@@ -10,6 +10,12 @@ export abstract class BaseModel<T extends { id: string }> {
     return data ? JSON.parse(data) : [];
   }
 
+  public updateByStorageKey(item: any) {
+    const items = this.getAllItems()
+    items.push(item)
+    this.saveItem(items)
+  } 
+
   public saveItem(item: any): void {
     localStorage.setItem(this.storageKey, JSON.stringify(item));
   }
