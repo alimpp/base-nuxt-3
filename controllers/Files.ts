@@ -8,12 +8,12 @@ export class FilesController extends FilesDataModel {
 
   public getCacheData() {}  
 
-  public async uploadFile(file: FormData) {     
-    console.log(file);
-               
+  public async uploadFile(file: File) {     
+    const formData = new FormData();
+    formData.append("file", file);              
     const response = await $fetch(`http://localhost:4000/files/upload`, {
         method: "POST",
-        body: file,
+        body: formData,
         "Content-Type": "application/json;",
         "Content-Length": "258"
     });    

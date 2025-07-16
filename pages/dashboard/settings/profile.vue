@@ -18,11 +18,21 @@
           label="Fristname"
           class="mt-4"
           v-model="user.fristname"
+          validate="true"
+          rules="length" 
+          min-length="3" 
+          max-length="30"
+          v-model:access="access"
         />
         <BaseInput
           label="Lastname"
           class="mt-4"
           v-model="user.lastname"
+          validate="true"
+          rules="length" 
+          min-length="3" 
+          max-length="30"
+          v-model:access="access"
         />
         <BaseInput
           label="Email"
@@ -45,11 +55,45 @@
           @click="udpateProfile"
           icon="line-md:pencil"
           :loading="loading"
+          :disabled="disabled"
         />
       </div>
 
       <div class="flex flex-column responsive-width mt-10">
-        
+        <span class="f-s-16 f-w-600 color-primary">Add Your Skills</span>
+        <BaseInput
+          label="Skill"
+          class="mt-10"
+          v-model="skill"
+        />
+        <BaseButton
+          class="bg-primary mt-10"
+          width="100%"
+          name="Add Skill"
+          @click="addSkill"
+          icon="line-md:plus"
+          :disabled="skill.length == 0"
+          :loading="addSkillLoading"
+        />
+        <div class="w-100 flex flex-wrap mt-10">
+          <BaseChip
+            width="100px"
+            class="mx-4 mt-4"
+            v-for="(item, index) in skillsDataSource"
+            :key="index"
+            bg="bg-info"
+            color="color-primary"
+            :name="item.skill"
+          >
+            <template #iconLeft>
+              <IconsClose
+                class="mx-1 cursor-pointer"
+                color="#7d7be5"
+                @click="removeSkill(item.id)"
+              />
+            </template>
+          </BaseChip>
+        </div>
       </div>
     </div>
     </div>
@@ -57,23 +101,29 @@
 
 <script setup>
 import { filesController } from '~/controllers/Files'
+import { skillsController } from '~/controllers/Skills'
 import { userController } from '~/controllers/User'
 
 const userStore = useUserStore()
+const skillsStore = useSkillsStore()
 
 const loading = ref(false)
-const avatarFile =  ref(null);
+const addSkillLoading = ref(false)
+
+const access = ref(true)
+const skill = ref('')
 
 const user = computed(() => {
     return userStore._state.user
 })
 
+const skillsDataSource = computed(() => {
+  return skillsStore._state.skills
+})
+
 const updateAvatar = async (event) => {
-  loading.value = true 
-  avatarFile.value = event.target.files[0]
-  const formData = new FormData();
-  formData.append("file", avatarFile.value);
-  const res = await filesController.uploadFile(formData)
+  loading.value = true  
+  const res = await filesController.uploadFile(event.target.files[0])
   if(res.id) {
     await userController.updateAvatar(res.id)
     await userController.profile()
@@ -92,6 +142,23 @@ const udpateProfile = async () => {
   await userController.profile()
   loading.value = false
 };
+
+const addSkill = async () => {
+  addSkillLoading.value = true;
+  await skillsController.addSkill(skill.value);
+  await skillsController.getSkills()
+  skill.value = ''
+  addSkillLoading.value = false;
+};
+
+const disabled = computed(() => {
+   return !access.value || !user.value.fristname || !user.value.lastname ? true : false
+})
+
+onMounted( async () => {
+  skillsController.getCacheData()
+  await skillsController.getSkills()
+})
 </script>
 
 <style scoped>
