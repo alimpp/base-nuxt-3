@@ -52,6 +52,17 @@ class SkillsController extends SkillsDataModel {
       throw error;
     }
   }
+
+  public async removeSkill(id: number | string) {
+    const token = useCookie("token");
+    const response = await $fetch(`/api/skills/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+    return response;
+  }
   
 }
 

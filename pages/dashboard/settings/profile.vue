@@ -65,6 +65,10 @@
           label="Skill"
           class="mt-10"
           v-model="skill"
+          validate="true"
+          rules="length" 
+          min-length="3" 
+          max-length="30"
         />
         <BaseButton
           class="bg-primary mt-10"
@@ -72,7 +76,7 @@
           name="Add Skill"
           @click="addSkill"
           icon="line-md:plus"
-          :disabled="skill.length == 0"
+          :disabled="addSkillDisabled"
           :loading="addSkillLoading"
         />
         <div class="w-100 flex flex-wrap mt-10">
@@ -84,15 +88,9 @@
             bg="bg-info"
             color="color-primary"
             :name="item.skill"
-          >
-            <template #iconLeft>
-              <IconsClose
-                class="mx-1 cursor-pointer"
-                color="#7d7be5"
-                @click="removeSkill(item.id)"
-              />
-            </template>
-          </BaseChip>
+            icon="line-md:close-small"
+            @handleClick="removeSkill(item)"
+          />
         </div>
       </div>
     </div>
@@ -111,6 +109,7 @@ const loading = ref(false)
 const addSkillLoading = ref(false)
 
 const access = ref(true)
+const addSkillAccess = ref(true)
 const skill = ref('')
 
 const user = computed(() => {
@@ -151,8 +150,17 @@ const addSkill = async () => {
   addSkillLoading.value = false;
 };
 
+const removeSkill = async (skill) => {
+  await skillsController.removeSkill(skill.id)
+  await skillsController.getSkills()
+}
+
 const disabled = computed(() => {
    return !access.value || !user.value.fristname || !user.value.lastname ? true : false
+})
+
+const addSkillDisabled = computed(() => {
+   return !addSkillAccess.value || !skill.value
 })
 
 onMounted( async () => {
