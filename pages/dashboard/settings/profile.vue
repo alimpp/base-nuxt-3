@@ -13,7 +13,7 @@
         />
         <span class="f-s-16 f-w-600 py-5">{{ user.fullname }}</span>
         <span class="f-s-14 f-w-600 color-gray">{{ user.email }}</span>
-        <BaseUploadAvatar @updateAvatar="updateAvatar" class="mt-10" />
+        <BaseUploadAvatar :loading="loading" @updateAvatar="updateAvatar" class="mt-10" />
         <BaseInput
           label="Fristname"
           class="mt-4"
@@ -43,6 +43,8 @@
           width="100%"
           name="Update Profile"
           @click="udpateProfile"
+          icon="line-md:pencil"
+          :loading="loading"
         />
       </div>
 
@@ -54,15 +56,42 @@
 </template>
 
 <script setup>
+import { filesController } from '~/controllers/Files'
+import { userController } from '~/controllers/User'
+
 const userStore = useUserStore()
+
+const loading = ref(false)
+const avatarFile =  ref(null);
 
 const user = computed(() => {
     return userStore._state.user
 })
 
-const updateAvatar = (file) => {
-    
+const updateAvatar = async (event) => {
+  loading.value = true 
+  avatarFile.value = event.target.files[0]
+  const formData = new FormData();
+  formData.append("file", avatarFile.value);
+  const res = await filesController.uploadFile(formData)
+  if(res.id) {
+    await userController.updateAvatar(res.id)
+    await userController.profile()
+  }
+  loading.value = false
 }
+
+const udpateProfile = async () => {
+  loading.value = true
+  const body = {
+    fristname: user.value.fristname,
+    lastname: user.value.lastname,
+    bio: user.value.bio,
+  };
+  await userController.updateProfile(body);
+  await userController.profile()
+  loading.value = false
+};
 </script>
 
 <style scoped>

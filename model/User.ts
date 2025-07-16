@@ -2,8 +2,7 @@ import { BaseModel } from "./Base";
 
 import type { IUser } from '@/types/User'
 
-
-export type UsersList = IUser[];
+import { filesController } from '@/controllers/Files'
 
 export class UserDataModel extends BaseModel<IUser & { id: string }> {
 
@@ -11,8 +10,8 @@ export class UserDataModel extends BaseModel<IUser & { id: string }> {
     super('user');
   }
   
-  generateProfile(user: any) {
-    const avatarUrl = "";
+  async generateProfile(user: any) {
+    const avatarUrl = user.avatarUrl ? await filesController.downloadFileById(user.avatarUrl) : '';
     const result = {
         fullname: user.fristname + " " + user.lastname,
         fristChar: user.fristname[0].toUpperCase(),

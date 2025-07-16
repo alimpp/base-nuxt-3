@@ -5,6 +5,13 @@ import type { IUser, ILoginForm } from '@/types/User'
 const userStore = useUserStore()
 const applicationStore = useApplicationStore()
 
+interface IUpdateProfile {
+  fristname: string;
+  lastname: string;
+  bio: string;
+  avatarUrl?: string;
+}
+
 
 export class UserController extends UserDataModel {
 
@@ -12,7 +19,7 @@ export class UserController extends UserDataModel {
       super()
   }
 
-  async login(loginForm: ILoginForm) {
+  public async login(loginForm: ILoginForm) {
     await $fetch("/api/auth/login", {
       method: "POST",
       body: loginForm,
@@ -31,7 +38,7 @@ export class UserController extends UserDataModel {
 
   }
 
-  async profile(): Promise<void> {
+  public async profile(): Promise<void> {
     const token = useCookie('token');        
     userStore.setJwt(token.value ? token.value : '')
     const user = this.readByStorageKey('user')
@@ -44,13 +51,35 @@ export class UserController extends UserDataModel {
         Authorization: `Bearer ${token.value}`,
       },
     })
-    .then((response: any) => {
+    .then( async (response: any) => {
       if (response) userStore.setAuthenticated(true);
-      const user = this.generateProfile(response)
+      const user = await this.generateProfile(response)
       userStore.setUser(user)
     })
     .catch((err) => {
       applicationStore.setAlert('danger', 'Profile Request failed !', 'Network is low' ,5000)
+    });
+  }
+
+  public async updateAvatar(avatarUrl: string) {
+    const token = useCookie("token");
+    await $fetch("/api/users/update", {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: {avatarUrl: avatarUrl},
+    });
+  }
+
+  async updateProfile(body: IUpdateProfile) {
+    const token = useCookie("token");
+    await $fetch("/api/users/update", {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: body,
     });
   }
 
