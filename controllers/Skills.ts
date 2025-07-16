@@ -1,5 +1,7 @@
 import { SkillsDataModel } from "~/model/Skills";
 
+import { baseHttp } from './BaseHttp'
+
 import type { ISkill } from '@/types/Skills'
 
 const skillsStore = useSkillsStore()
@@ -36,21 +38,10 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async getSkills() {
-    const token = useCookie("token");
     this.getCacheData()
-    try {
-      const requestResponse : ISkill[] = await $fetch("/api/skills/list", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-        },
-      });
-      const parsedList: ISkill[] = this.generateSkills(requestResponse)
-      skillsStore.setSkills(parsedList)
-    } catch (error) {
-      console.error('Failed to fetch skills:', error);
-      throw error;
-    }
+    const requestResponse = await baseHttp.Get('/api/skills/list')
+    const parsedList: ISkill[] = this.generateSkills(requestResponse as ISkill[])
+    skillsStore.setSkills(parsedList)
   }
 
   public async removeSkill(id: number | string) {

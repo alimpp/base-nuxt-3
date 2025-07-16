@@ -1,6 +1,8 @@
 import { UserDataModel } from '~/model/User'
 
-import type { IUser, ILoginForm } from '@/types/User'
+import type { ILoginForm } from '@/types/User'
+
+import { baseHttp } from './BaseHttp'
 
 const userStore = useUserStore()
 const applicationStore = useApplicationStore()
