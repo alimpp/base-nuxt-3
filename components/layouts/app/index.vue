@@ -9,7 +9,7 @@
     </div>
     <div class="w-100 flex flex-column">
       <LayoutsAppHeader @chnageSideMenuState="chnageSideMenuState" />
-      <div class="px-10 py-10 router-content">
+      <div class="router-content">
         <NuxtPage />
       </div>
     </div>
@@ -32,6 +32,7 @@ const appTheme = computed(() => {
 .router-content {
   height: 90dvh;
   overflow-y: scroll;
+  padding: 10px 30px;
 }
 .router-content::-webkit-scrollbar {
   width: 0px;
@@ -47,5 +48,11 @@ const appTheme = computed(() => {
 .router-content::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: #cac8c8;
+}
+
+@media (max-width: 800px) {
+  .router-content {
+    padding: 10px 10px;
+  }
 }
 </style>
