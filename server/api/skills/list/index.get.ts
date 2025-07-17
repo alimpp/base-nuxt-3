@@ -1,12 +1,14 @@
 export default defineEventHandler(async (event) => {
-  const token = event.req.headers["authorization"];
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.baseUrl;
 
+  const token = getCookie(event, "token");
   const headers = {
-    Authorization: `${token}`,
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   };
 
-  const response: any = await $fetch(`http://localhost:4000/skill/list`, {
+  const response: any = await $fetch(`${baseUrl}/skill/list`, {
     method: "GET",
     headers: headers,
   });

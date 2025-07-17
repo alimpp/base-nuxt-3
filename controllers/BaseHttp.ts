@@ -1,20 +1,13 @@
 export class BaseHttp {
-  
-  public async Get(url: string){
-    const token = useCookie("token");
+  public async Get(url: string) {
+    const api = useCustomFetch();
     try {
-        const requestResponse = await $fetch(url, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token.value}`,
-          },
-        });
-        return requestResponse
+      const response = await api(url);
+      return response;
     } catch (error) {
-        throw error;
+      throw error;
     }
   }
- 
 }
 
-export const baseHttp = new BaseHttp() 
+export const baseHttp = new BaseHttp();
