@@ -1,28 +1,27 @@
-import { BaseModel } from "./Base";
+import { BaseHttp } from "../core/BaseHttp";
 
-import type { IUser } from '@/types/User'
+import { filesController } from "@/controllers/Files";
 
-import { filesController } from '@/controllers/Files'
-
-export class UserDataModel extends BaseModel<IUser & { id: string }> {
-
+export class UserDataModel extends BaseHttp {
   constructor() {
-    super('user');
+    super("user");
   }
-  
+
   async generateProfile(user: any) {
-    const avatarUrl = user.avatarUrl ? await filesController.downloadFileById(user.avatarUrl) : '';
+    const avatarUrl = user.avatarUrl
+      ? await filesController.downloadFileById(user.avatarUrl)
+      : "";
     const result = {
-        fullname: user.fristname + " " + user.lastname,
-        fristChar: user.fristname[0].toUpperCase(),
-        fristname: user.fristname,
-        lastname: user.lastname,
-        email: user.email,
-        id: user.id,
-        avatarUrl,
-        bio: user.bio,
+      fullname: user.fristname + " " + user.lastname,
+      fristChar: user.fristname[0].toUpperCase(),
+      fristname: user.fristname,
+      lastname: user.lastname,
+      email: user.email,
+      id: user.id,
+      avatarUrl,
+      bio: user.bio,
     };
-    this.saveItem(result)
-    return result
+    this.saveItem(result);
+    return result;
   }
 }

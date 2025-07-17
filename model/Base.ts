@@ -11,25 +11,25 @@ export abstract class BaseModel<T extends { id: string }> {
   }
 
   public updateByStorageKey(item: any) {
-    const items = this.getAllItems()
-    items.push(item)
-    this.saveItem(items)
-  } 
+    const items = this.getAllItems();
+    items.push(item);
+    this.saveItem(items);
+  }
 
   public saveItem(item: any): void {
     localStorage.setItem(this.storageKey, JSON.stringify(item));
   }
 
   public readByStorageKey(storageKey: string) {
-    const result = localStorage.getItem(storageKey)
-    return result ? JSON.parse(result) : null
+    const result = localStorage.getItem(storageKey);
+    return result ? JSON.parse(result) : null;
   }
 
   public saveAllItems(items: T[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(items));
   }
 
-  create(item: Omit<T, 'id'>): T {
+  create(item: Omit<T, "id">): T {
     const items = this.getAllItems();
     const newItem = {
       ...item,
@@ -42,12 +42,12 @@ export abstract class BaseModel<T extends { id: string }> {
 
   read(id?: string | number): T | T[] | null {
     const items = this.getAllItems();
-    return id ? items.find(item => item.id == id) || null : items;
+    return id ? items.find((item) => item.id == id) || null : items;
   }
 
   update(id: string | number, updatedItem: Partial<T>): T | null {
     const items = this.getAllItems();
-    const index = items.findIndex(item => item.id === id);
+    const index = items.findIndex((item) => item.id === id);
 
     if (index === -1) return null;
 
@@ -59,7 +59,7 @@ export abstract class BaseModel<T extends { id: string }> {
 
   delete(id: string): boolean {
     const items = this.getAllItems();
-    const filteredItems = items.filter(item => item.id !== id);
+    const filteredItems = items.filter((item) => item.id !== id);
     if (items.length === filteredItems.length) return false;
     this.saveAllItems(filteredItems);
     return true;

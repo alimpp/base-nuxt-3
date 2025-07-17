@@ -1,10 +1,10 @@
-import { BaseStore } from "../core/BaseStore";
-import { StoreManager } from "../core/StoreManager";
+import { BaseStore } from "../../core/BaseStore";
+import { StoreManager } from "../../core/StoreManager";
 
-import type { ISkill } from '@/types/Skills'
+import type { ISkill } from "@/types/Skills";
 
 interface ISkillsState {
-  skills: ISkill[],
+  skills: ISkill[];
 }
 
 export class SkillsStore extends BaseStore<ISkillsState> {
@@ -26,10 +26,10 @@ export class SkillsStore extends BaseStore<ISkillsState> {
   }
 
   public setSkills(skills: ISkill[]) {
-    this._state.skills = skills
+    this._state.skills = skills;
   }
 
   public reset() {
-    this._state.skills = []
+    this._state.skills = [];
   }
 }

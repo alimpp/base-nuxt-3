@@ -5,15 +5,25 @@
     :class="[bg, color, border]"
   >
     <div class="flex align-center justify-center px-20">
-      <BaseIcon class="curosr-pointer" @click="emit('handleClick')" :name="icon" v-if="icon && iconLocation == 'left'" />
+      <BaseIcon
+        class="cursor-pointer"
+        @click="emit('handleClick')"
+        :name="icon"
+        v-if="icon && iconLocation == 'left'"
+      />
       <span :class="[fontSize, fontWight, color]"> {{ name }}</span>
-      <BaseIcon class="curosr-pointer" @click="emit('handleClick')" :name="icon" v-if="icon && iconLocation == 'right'" />
+      <BaseIcon
+        class="cursor-pointer"
+        @click="emit('handleClick')"
+        :name="icon"
+        v-if="icon && iconLocation == 'right'"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-const emit = defineEmits(['handleClick'])
+const emit = defineEmits(["handleClick"]);
 
 const props = defineProps({
   bg: {
@@ -50,12 +60,12 @@ const props = defineProps({
   },
   icon: {
     type: String,
-    default: ''
+    default: "",
   },
   iconLocation: {
     type: String,
-    default: 'right'
-  }
+    default: "right",
+  },
 });
 </script>
 

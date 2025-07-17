@@ -1,12 +1,12 @@
-import { BaseStore } from "../core/BaseStore";
-import { StoreManager } from "../core/StoreManager";
+import { BaseStore } from "../../core/BaseStore";
+import { StoreManager } from "../../core/StoreManager";
 
 interface IToast {
   title: string;
   text: string;
   type: string;
   id: string | number;
-  timeout: number
+  timeout: number;
 }
 
 interface IAlert {
@@ -14,13 +14,13 @@ interface IAlert {
   text: string;
   type: string;
   id: string | number;
-  timeout: number
+  timeout: number;
 }
 
 interface IApplication {
-  theme: string,
-  toastMessages: Array<IToast>
-  alert: IAlert
+  theme: string;
+  toastMessages: Array<IToast>;
+  alert: IAlert;
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -38,50 +38,50 @@ export class ApplicationStore extends BaseStore<IApplication> {
       theme: "dark",
       toastMessages: [],
       alert: {
-        title: '',
-        text: '',
-        type: '',
-        id: '',
-        timeout: 0
-      }
+        title: "",
+        text: "",
+        type: "",
+        id: "",
+        timeout: 0,
+      },
     });
     StoreManager.register(this);
   }
 
   setTheme(theme: string) {
-     this._state.theme = theme
+    this._state.theme = theme;
   }
 
-  public setAlert(type: string, title: string, text: string ,timeout: number) {
-    this._state. alert = {
+  public setAlert(type: string, title: string, text: string, timeout: number) {
+    this._state.alert = {
       title: title,
       text: text,
       type: type,
       id: this.generateId(),
-      timeout: timeout
-    }
+      timeout: timeout,
+    };
   }
 
   public resetAlert() {
-    this._state. alert = {
-        title: '',
-        text: '',
-        type: '',
-        id: '',
-        timeout: 0
-    }
+    this._state.alert = {
+      title: "",
+      text: "",
+      type: "",
+      id: "",
+      timeout: 0,
+    };
   }
 
   public reset() {
     this._state.theme = "dark";
-    this._state.toastMessages = []
-    this._state. alert = {
-        title: '',
-        text: '',
-        type: '',
-        id: '',
-        timeout: 0
-    }
+    this._state.toastMessages = [];
+    this._state.alert = {
+      title: "",
+      text: "",
+      type: "",
+      id: "",
+      timeout: 0,
+    };
   }
 
   private generateId(): string {

@@ -1,16 +1,24 @@
 <template>
-  <div class="border-rounded base-card" 
-   :class="[{'base-card-dark': appTheme == 'dark', 'base-card-light': appTheme == 'light'},px, py]"
+  <div
+    class="border-rounded base-card"
+    :class="[
+      {
+        'base-card-dark': appTheme == 'dark',
+        'base-card-light': appTheme == 'light',
+      },
+      px,
+      py,
+    ]"
   >
     <slot></slot>
   </div>
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore()
+const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
-    return applicationStore._state.theme
-})
+  return applicationStore._state.theme;
+});
 
 const props = defineProps({
   bgClass: {
@@ -30,7 +38,7 @@ const props = defineProps({
 
 <style scoped>
 .base-card {
-  box-shadow: 3px 2px 1px #7d7be515;
+  /* box-shadow: 3px 2px 1px #7d7be515; */
   overflow: hidden;
 }
 </style>

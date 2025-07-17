@@ -1,40 +1,34 @@
-import { UsersDataModel } from '~/model/Users'
+import { UsersDataModel } from "~/model/Users";
 
-import type { IUsersServerResponse, IUserList } from '../types/Users'
+import type { IUsersServerResponse, IUserList } from "../types/Users";
 
-const usersStore = useUsersStore()
+const usersStore = useUsersStore();
 
 export class UsersController extends UsersDataModel {
-
   constructor() {
-    super()
+    super();
   }
 
   public getCacheData() {
-    const users = this.getAllItems()
-    if(users) {
-      usersStore.setUsers(users)
-    }
-  }  
-
-  async allUsers(): Promise<void> {
-    const token = useCookie('token')
-    this.getCacheData()
-    try {
-      const requestResponse: IUsersServerResponse = await $fetch('/api/users/all',{
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token.value}`,
-        },
-      })
-      const parsedList: IUserList[] = await this.generateUsers(requestResponse)
-      usersStore.setUsers(parsedList)
-    } catch (error) {
-      console.error('Failed to fetch users:', error);
-      throw error;
+    const users = this.getAllItems();
+    if (users) {
+      usersStore.setUsers(users);
     }
   }
 
+  async allUsers(): Promise<void> {
+    this.getCacheData();
+    try {
+      const requestResponse = (await this.Get(
+        "/api/users/all"
+      )) as IUsersServerResponse;
+      const parsedList: IUserList[] = await this.generateUsers(requestResponse);
+      usersStore.setUsers(parsedList);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+      throw error;
+    }
+  }
 }
 
-export const usersController = new UsersController()
+export const usersController = new UsersController();

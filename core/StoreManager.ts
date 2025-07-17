@@ -1,4 +1,3 @@
-// stores/core/StoreManager.ts
 import { BaseStore } from "./BaseStore";
 type StoreInstance = InstanceType<typeof BaseStore>;
 

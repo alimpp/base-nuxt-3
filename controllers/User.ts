@@ -2,8 +2,6 @@ import { UserDataModel } from "~/model/User";
 
 import type { ILoginForm } from "@/types/User";
 
-import { baseHttp } from "./BaseHttp";
-
 const userStore = useUserStore();
 const applicationStore = useApplicationStore();
 
@@ -20,10 +18,7 @@ export class UserController extends UserDataModel {
   }
 
   public async login(loginForm: ILoginForm) {
-    await $fetch("/api/auth/login", {
-      method: "POST",
-      body: loginForm,
-    })
+    await this.Post("/api/auth/login", loginForm)
       .then((res: unknown) => {
         const response = res as { token: string };
         const tokenCookie = useCookie("token", { maxAge: 60 * 60 * 24 });
@@ -49,32 +44,18 @@ export class UserController extends UserDataModel {
     if (cacheUser) {
       userStore.setUser(cacheUser);
     }
-    const requestResponse = await baseHttp.Get("/api/users/profile");
+    const requestResponse = await this.Get("/api/users/profile");
     if (requestResponse) userStore.setAuthenticated(true);
     const user = await this.generateProfile(requestResponse);
     userStore.setUser(user);
   }
 
   public async updateAvatar(avatarUrl: string) {
-    const token = useCookie("token");
-    await $fetch("/api/users/update", {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token.value}`,
-      },
-      body: { avatarUrl: avatarUrl },
-    });
+    this.Patch("/api/users/update", { avatarUrl });
   }
 
   async updateProfile(body: IUpdateProfile) {
-    const token = useCookie("token");
-    await $fetch("/api/users/update", {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token.value}`,
-      },
-      body: body,
-    });
+    this.Patch("/api/users/update", body);
   }
 }
 
