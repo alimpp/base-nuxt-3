@@ -30,8 +30,7 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async removeSkill(id: number | string) {
-    const response = await this.Delete(`/api/skills/${id}`);
-    return response;
+    return await this.Delete(`/api/skills/${id}`);
   }
 }
 
