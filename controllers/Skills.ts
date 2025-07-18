@@ -17,7 +17,7 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async addSkill(skill: string) {
-    this.Post("/api/skills/add", { skill });
+    return this.Post("/api/skills/add", { skill });
   }
 
   public async getSkills() {
