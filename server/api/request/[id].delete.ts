@@ -1,4 +1,7 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.baseUrl;
+
   const id = getRouterParam(event, "id");
   const token = event.req.headers["authorization"];
 
@@ -7,7 +10,7 @@ export default defineEventHandler(async (event) => {
     "Content-Type": "application/json",
   };
 
-  const response = await $fetch(`http://localhost:4000/request/${id}`, {
+  const response = await $fetch(`${baseUrl}/request/${id}`, {
     method: "DELETE",
     headers: headers,
   });

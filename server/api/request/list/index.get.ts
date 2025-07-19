@@ -1,4 +1,7 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.baseUrl;
+
   const token = event.req.headers["authorization"];
 
   const headers = {
@@ -6,7 +9,7 @@ export default defineEventHandler(async (event) => {
     "Content-Type": "application/json",
   };
 
-  const response: any = await $fetch(`http://localhost:4000/request/list`, {
+  const response: any = await $fetch(`${baseUrl}/request/list`, {
     method: "GET",
     headers: headers,
   });

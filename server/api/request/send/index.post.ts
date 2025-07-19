@@ -1,4 +1,7 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.baseUrl;
+
   const body = await readBody(event);
   const token = event.req.headers["authorization"];
 
@@ -7,7 +10,7 @@ export default defineEventHandler(async (event) => {
     "Content-Type": "application/json",
   };
 
-  const response = await $fetch(`http://localhost:4000/request/send`, {
+  const response = await $fetch(`{baseUrl}/request/send`, {
     method: "POST",
     headers: headers,
     body: body,

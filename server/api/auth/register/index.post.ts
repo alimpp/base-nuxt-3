@@ -1,7 +1,10 @@
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.baseUrl;
+
   const body = await readBody(event);
 
-  const response = await $fetch(`http://localhost:4000/auth/register`, {
+  const response = await $fetch(`${baseUrl}/auth/register`, {
     method: "POST",
     body: body,
   });
