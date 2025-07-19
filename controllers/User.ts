@@ -1,6 +1,6 @@
 import { UserDataModel } from "~/model/User";
 
-import type { ILoginForm } from "@/types/User";
+import type { ILoginForm, IRegisterForm } from "@/types/User";
 
 const userStore = useUserStore();
 const applicationStore = useApplicationStore();
@@ -35,6 +35,13 @@ export class UserController extends UserDataModel {
           );
         }
       });
+  }
+
+  public async register(registerForm: ILoginForm) {
+    const response = await this.Post("/api/auth/register", registerForm)
+    if (response) {
+      navigateTo("/auth/login");
+    }
   }
 
   public async profile(): Promise<void> {

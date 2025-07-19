@@ -13,3 +13,10 @@ export interface ILoginForm {
     email: string,
     password: string
 }
+
+export interface IRegisterForm {
+    email: string,
+    password: string
+    fristname: string,
+    lastname: string,
+}
