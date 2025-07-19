@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { CoreValidations } from "@/composables/CoreValidations";
+import { useValidations } from "~/composables/useValidations";
 
 const errorMessage = ref("");
 const emit = defineEmits(["update:access"]);
@@ -92,7 +92,8 @@ watch(
       switch (props.rules) {
         case "email":
           if (props.modelValue != "") {
-            if (CoreValidations.validEmail(props.modelValue)) {
+            const { validEmail } = useValidations()
+            if (validEmail(props.modelValue)) {
               access.value = true;
               errorMessage.value = "";
             } else {
@@ -105,7 +106,8 @@ watch(
           break;
 
         case "required":
-          if (CoreValidations.validEmpty(props.modelValue)) {
+          const { validEmpty } = useValidations()
+          if (validEmpty(props.modelValue)) {
             access.value = true;
             errorMessage.value = "";
           } else {
@@ -115,7 +117,8 @@ watch(
           break;
 
         case "length":
-          const result = CoreValidations.validLength(
+          const { validLength } = useValidations()
+          const result = validLength(
             props.modelValue,
             props.minLength,
             props.maxLength

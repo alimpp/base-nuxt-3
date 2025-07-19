@@ -13,7 +13,7 @@
       :type="type"
       :class="{
         error: errorMessage,
-        disabled: disabled
+        disabled: disabled,
       }"
       :disabled="disabled"
       :placeholder="placeholder"
@@ -26,12 +26,12 @@
 </template>
 
 <script setup>
-import { CoreValidations } from '@/composables/CoreValidations'
+import { useValidations } from "~/composables/useValidations";
 
-const errorMessage = ref('')
+const errorMessage = ref("");
 const emit = defineEmits(["update:access"]);
 
-const access = defineModel('access')
+const access = defineModel("access");
 
 const props = defineProps({
   disabled: {
@@ -69,7 +69,7 @@ const props = defineProps({
   },
   validate: {
     type: Boolean,
-    default: false
+    default: false,
   },
   rules: {
     type: String,
@@ -77,54 +77,65 @@ const props = defineProps({
   },
   minLength: {
     type: Number,
-    default: 0
+    default: 0,
   },
   maxLength: {
     type: Number,
-    default: 0
+    default: 0,
   },
 });
 
-watch(() => props.modelValue, (nVal,oval) => {
-  if(props.validate) {
-    switch (props.rules) {
-      case 'email':      
-        if(props.modelValue != '') {
-          if(CoreValidations.validEmail(props.modelValue)) {
-            access.value = true
-            errorMessage.value = ''
+watch(
+  () => props.modelValue,
+  (nVal, oval) => {
+    if (props.validate) {
+      switch (props.rules) {
+        case "email":
+          if (props.modelValue != "") {
+            const { validEmail } = useValidations()
+            if (validEmail(props.modelValue)) {
+              access.value = true;
+              errorMessage.value = "";
+            } else {
+              access.value = false;
+              errorMessage.value = "email not valid";
+            }
           } else {
-            access.value = false
-            errorMessage.value = 'email not valid'
+            errorMessage.value = "";
           }
-        } else {
-          errorMessage.value = ''
-        }
-      break;
-        
-      case 'required':      
-        if(CoreValidations.validEmpty(props.modelValue)) {
-          access.value = true
-          errorMessage.value = ''
-        } else {
-          access.value = false
-          errorMessage.value = 'Field is required'
-        }
-      break;
-        
-      case 'length':   
-        const result = CoreValidations.validLength(props.modelValue, props.minLength, props.maxLength)   
-        if(result.isValid) {
-          access.value = true
-          errorMessage.value = result.message
-        } else {
-          access.value = false
-          errorMessage.value = result.message
-        }
-      break;
+          break;
+
+        case "required":
+          const { validEmpty } = useValidations()
+          if (validEmpty(props.modelValue)) {
+            access.value = true;
+            errorMessage.value = "";
+          } else {
+            access.value = false;
+            errorMessage.value = "Field is required";
+          }
+          break;
+
+        case "length":
+          const { validLength } = useValidations()
+          const result = validLength(
+            props.modelValue,
+            props.minLength,
+            props.maxLength
+          );
+          if (result.isValid) {
+            access.value = true;
+            errorMessage.value = result.message;
+          } else {
+            access.value = false;
+            errorMessage.value = result.message;
+          }
+          break;
+      }
     }
-  }
-}, {deep: true})
+  },
+  { deep: true }
+);
 </script>
 
 <style scoped lang="scss">

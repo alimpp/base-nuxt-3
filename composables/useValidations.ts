@@ -1,20 +1,20 @@
-export class Validations {
+export const useValidations = () => {
 
-  validEmail(email: string): boolean {
+  const validEmail = (email: string): boolean => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   }
 
-  validEmpty(input: string): boolean {
+  const validEmpty = (input: string): boolean => {
     const length = input.length;
     return length == 0 ? false : true
   }
 
-  validLength(
+  const validLength = (
     input: string,
     minLength: number,
     maxLength: number
-  ): { isValid: boolean; message?: string } {
+  ): { isValid: boolean; message?: string } => {
     const length = input.length;
     if (length < minLength) {
       return {
@@ -31,6 +31,6 @@ export class Validations {
     return { isValid: true, message: '' };
   }
 
-}
+  return { validEmail, validEmpty, validLength }
 
-export const CoreValidations = new Validations()
+}
