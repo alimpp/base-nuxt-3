@@ -36,4 +36,5 @@ export class RequestStore extends BaseStore<IRequestListState> {
   public reset() {
     this._state.requestList = [];
   }
+  
 }
