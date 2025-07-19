@@ -1,4 +1,3 @@
-import { BaseModel } from "./Base";
 import { BaseHttp } from "../core/BaseHttp";
 
 import type { IUsersServerResponse, IUserList } from "../types/Users";

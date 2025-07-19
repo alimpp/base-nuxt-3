@@ -24,6 +24,21 @@ export class BaseHttp extends BaseModel<any> {
     }
   }
 
+  public async upload(url: string, body: any) {
+    const api = useCustomFetch();
+    try {
+      const response = await api(url, {
+        method: "POST",
+        body,
+        "Content-Type": "application/json;",
+        "Content-Length": "258"
+      });
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public async Patch(url: string, body: any) {
     const api = useCustomFetch();
     try {
