@@ -4,25 +4,11 @@ export abstract class BaseModel<T extends { id: string | number }> {
   constructor(storageKey: string) {
     this.storageKey = storageKey;
   }
+  // ** Worked With Array Data Type ** //
 
   protected getAllItems(): T[] {
     const data = localStorage.getItem(this.storageKey);
     return data ? JSON.parse(data) : [];
-  }
-
-  public updateByStorageKey(item: any) {
-    const items = this.getAllItems();
-    items.push(item);
-    this.saveItem(items);
-  }
-
-  public saveItem(item: any): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(item));
-  }
-
-  public readByStorageKey(storageKey: string) {
-    const result = localStorage.getItem(storageKey);
-    return result ? JSON.parse(result) : null;
   }
 
   public saveAllItems(items: T[]): void {
@@ -65,7 +51,28 @@ export abstract class BaseModel<T extends { id: string | number }> {
     return true;
   }
 
+  // ** Worked With Array Data Type ** //
+
+  // ** Worked With Object Data Type ** //
+
+  public saveItem(item: any): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(item));
+  }
+
+  public readByStorageKey(storageKey: string) {
+    const result = localStorage.getItem(storageKey);
+    return result ? JSON.parse(result) : null;
+  }
+
+  public updateByStorageKey(item: any) {
+    const items = this.getAllItems();
+    items.push(item);
+    this.saveItem(items);
+  }
+
   private generateId(): string {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
   }
+
+  // ** Worked With Object Data Type ** //
 }
