@@ -47,7 +47,7 @@ export class UserController extends UserDataModel {
   public async profile(): Promise<void> {
     const token = useCookie("token");
     userStore.setJwt(token.value ? token.value : "");
-    const cacheUser = this.readByStorageKey("user");
+    const cacheUser = this.readObject();        
     if (cacheUser) {
       userStore.setUser(cacheUser);
     }
@@ -63,6 +63,13 @@ export class UserController extends UserDataModel {
 
   async updateProfile(body: IUpdateProfile) {
     this.Patch("/api/users/update", body);
+  }
+
+  public logout() {
+    const token = useCookie("token");
+    token.value = ''
+    this.clearStorage()
+    navigateTo('/auth/login')
   }
 }
 

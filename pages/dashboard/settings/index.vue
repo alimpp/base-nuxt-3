@@ -31,11 +31,18 @@
             <span class="f-s-14 f-w-500 px-5">Profile</span>
         </div>
         <BaseDivider class="mt-15" />
+        <div @click="logout" class="flex align-center mt-15 cursor-pointer color-red">
+            <BaseIcon name="line-md:arrow-left-square" />
+            <span class="f-s-14 f-w-500 px-5">Logout</span>
+        </div>
+        <BaseDivider class="mt-15" />
       </div>
     </div>
 </template>
 
 <script setup>
+import { userController } from '~/controllers/User'
+
 const applicationStore = useApplicationStore()
 
 const setTheme = (theme) => {
@@ -45,6 +52,10 @@ const setTheme = (theme) => {
 const appTheme = computed(() => {
     return applicationStore._state.theme
 })
+
+const logout = () => {
+  userController.logout()
+}
 
 definePageMeta({
   middleware: "auth",

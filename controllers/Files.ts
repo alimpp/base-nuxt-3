@@ -17,7 +17,7 @@ export class FilesController extends FilesDataModel {
   async downloadFileById(id: string) {
     const file = this.read(id)    
     if(!file) {
-      this.updateByStorageKey({id: id})
+      this.updateObjectItem({id: id})
     }
     return file ? `http://localhost:4000/files/${file.id}` : `http://localhost:4000/files/${id}`
   }

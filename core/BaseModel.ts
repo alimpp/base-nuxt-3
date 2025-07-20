@@ -4,6 +4,19 @@ export abstract class BaseModel<T extends { id: string | number }> {
   constructor(storageKey: string) {
     this.storageKey = storageKey;
   }
+
+  private generateId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
+  }
+
+  public saveItem(item: any): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(item));
+  }
+
+  public clearStorage() {
+    localStorage.clear()
+  }
+
   // ** Worked With Array Data Type ** //
 
   protected getAllItems(): T[] {
@@ -55,23 +68,15 @@ export abstract class BaseModel<T extends { id: string | number }> {
 
   // ** Worked With Object Data Type ** //
 
-  public saveItem(item: any): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(item));
-  }
-
-  public readByStorageKey(storageKey: string) {
-    const result = localStorage.getItem(storageKey);
+  public readObject() {
+    const result = localStorage.getItem(this.storageKey);
     return result ? JSON.parse(result) : null;
   }
 
-  public updateByStorageKey(item: any) {
+  public updateObjectItem(item: any) {
     const items = this.getAllItems();
     items.push(item);
     this.saveItem(items);
-  }
-
-  private generateId(): string {
-    return Date.now().toString(36) + Math.random().toString(36).substring(2);
   }
 
   // ** Worked With Object Data Type ** //
