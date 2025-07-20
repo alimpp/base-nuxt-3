@@ -1,65 +1,56 @@
-import { BaseModel } from "~/model/Base";
+import { BaseModel } from "./BaseModel";
+
+type HttpMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT';
 
 export class BaseHttp extends BaseModel<any> {
-  public async Get(url: string) {
+  private async request<T>(url: string, method: HttpMethod, body?: any, headers?: Record<string, string>): Promise<T> {
     const api = useCustomFetch();
     try {
-      const response = await api(url);
-      return response;
+      const response = await api(url, {
+        method,
+        body: body ? JSON.stringify(body) : undefined,
+        headers: {
+          'Content-Type': 'application/json',
+          ...headers,
+        },
+      });
+      return response as T;
     } catch (error) {
+      console.error(`HTTP ${method} request to ${url} failed:`, error);
       throw error;
     }
   }
 
-  public async Post(url: string, body: any) {
+  public async Get<T>(url: string): Promise<T> {
+    return this.request<T>(url, 'GET');
+  }
+
+  public async Post<T>(url: string, body: any): Promise<T> {
+    return this.request<T>(url, 'POST', body);
+  }
+
+  public async Patch<T>(url: string, body: any): Promise<T> {
+    return this.request<T>(url, 'PATCH', body);
+  }
+
+  public async Put<T>(url: string, body: any): Promise<T> {
+    return this.request<T>(url, 'PUT', body);
+  }
+
+  public async Delete<T>(url: string): Promise<T> {
+    return this.request<T>(url, 'DELETE');
+  }
+
+  public async Upload<T>(url: string, body: FormData): Promise<T> {
     const api = useCustomFetch();
     try {
       const response = await api(url, {
-        method: "POST",
+        method: 'POST',
         body,
       });
-      return response;
+      return response as T;
     } catch (error) {
-      throw error;
-    }
-  }
-
-  public async upload(url: string, body: any) {
-    const api = useCustomFetch();
-    try {
-      const response = await api(url, {
-        method: "POST",
-        body,
-        "Content-Type": "application/json;",
-        "Content-Length": "258"
-      });
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public async Patch(url: string, body: any) {
-    const api = useCustomFetch();
-    try {
-      const response = await api(url, {
-        method: "PATCH",
-        body,
-      });
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public async Delete(url: string) {
-    const api = useCustomFetch();
-    try {
-      const response = await api(url, {
-        method: "DELETE",
-      });
-      return response;
-    } catch (error) {
+      console.error(`File upload to ${url} failed:`, error);
       throw error;
     }
   }

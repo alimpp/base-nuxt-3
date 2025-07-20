@@ -1,4 +1,4 @@
-export abstract class BaseModel<T extends { id: string }> {
+export abstract class BaseModel<T extends { id: string | number }> {
   private readonly storageKey: string;
 
   constructor(storageKey: string) {

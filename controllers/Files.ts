@@ -11,7 +11,7 @@ export class FilesController extends FilesDataModel {
   public async uploadFile(file: File) {     
     const formData = new FormData();
     formData.append("file", file);              
-    return await this.upload(`http://localhost:4000/files/upload`, formData);    
+    return await this.Upload(`http://localhost:4000/files/upload`, formData);    
   }
 
   async downloadFileById(id: string) {
