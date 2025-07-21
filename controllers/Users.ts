@@ -9,10 +9,10 @@ export class UsersController extends UsersDataModel {
     super();
   }
 
-  public getCacheData() {
-    const users = this.getAllItems();
-    if (users) {
-      usersStore.setUsers(users);
+  private getCacheData() {
+    const list = this.getAllItems();
+    if (list) {
+      usersStore.setUsers(list);
     }
   }
 

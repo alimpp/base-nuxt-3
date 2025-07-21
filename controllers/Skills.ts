@@ -9,10 +9,10 @@ class SkillsController extends SkillsDataModel {
     super();
   }
 
-  public getCacheData() {
-    const skills = this.getAllItems();
-    if (skills) {
-      skillsStore.setSkills(skills);
+  private getCacheData() {
+    const list = this.getAllItems();
+    if (list) {
+      skillsStore.setSkills(list);
     }
   }
 

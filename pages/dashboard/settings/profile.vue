@@ -164,7 +164,6 @@ const addSkillDisabled = computed(() => {
 })
 
 onMounted( async () => {
-  skillsController.getCacheData()
   await skillsController.getSkills()
 })
 </script>

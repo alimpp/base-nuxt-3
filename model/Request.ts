@@ -5,7 +5,7 @@ import type { IServerResponse, IRequestList } from "../types/Request";
 export class RequestDataModel extends BaseHttp {
 
   constructor() {
-    super("request");
+    super("requests");
   }
 
   async generateRequestList(apiResponse: IServerResponse): Promise<IRequestList[]> {
@@ -22,6 +22,7 @@ export class RequestDataModel extends BaseHttp {
         }
         list.push(obj)
     }
+    this.saveAllItems(list)
     return list
   }
 

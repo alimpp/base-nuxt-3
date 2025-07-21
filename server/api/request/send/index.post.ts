@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     "Content-Type": "application/json",
   };
 
-  const response = await $fetch(`{baseUrl}/request/send`, {
+  const response = await $fetch(`${baseUrl}/request/send`, {
     method: "POST",
     headers: headers,
     body: body,

@@ -46,7 +46,7 @@
         bg="bg-none"
         color="color-primary"
         name="Pendding Accept"
-        icon="eos-icons:three-dots-loading"
+        icon="svg-spinners:3-dots-scale"
       />
       <BaseButton
         width="40px"
@@ -68,11 +68,8 @@
         color="color-primary"
         name="Pendding Your Accept"
         @click="navigateTo('/friends/requests')"
-      >
-        <template #iconLeft>
-          <IconsPendding color="#7d7be5" class="mx-4" />
-        </template>
-      </BaseButton>
+        icon="svg-spinners:blocks-shuffle-3"
+      />
       <BaseButton
         width="40px"
         bg="bg-info"
@@ -100,6 +97,7 @@
 </template>
 
 <script setup>
+import { requestController } from '~/controllers/Request';
 const props = defineProps({
   user: {
     type: Object,
@@ -112,10 +110,6 @@ const loading = ref(false);
 
 const handleSendRequest = async (id) => {
   loading.value = true;
-  // await RequestControllerModule.sendRequest(id);
+  await requestController.sendRequest(id);
 };
-
-onMounted(() => {
-
-})
 </script>
