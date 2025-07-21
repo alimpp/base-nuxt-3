@@ -1,3 +1,5 @@
+import { useCustomServerRequest } from "~/server/request/useCustomServerRequest";
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const baseUrl = config.public.baseUrl;
@@ -10,9 +12,8 @@ export default defineEventHandler(async (event) => {
     "Content-Type": "application/json",
   };
 
-  const response = await $fetch(`${baseUrl}/skill/${id}`, {
+  const response = await useCustomServerRequest(event, `${baseUrl}/skill/${id}`, {
     method: "DELETE",
-    headers: headers,
   });
   return response;
 });
