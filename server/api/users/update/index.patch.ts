@@ -1,4 +1,4 @@
-import { useCustomServerRequest } from "~/server/request/useCustomServerRequest";
+import { useCustomServerRequest } from "~/server/utils/useCustomServerRequest";
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig();
