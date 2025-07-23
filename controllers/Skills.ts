@@ -17,12 +17,12 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async addSkill(skill: string) {
-    return this.Post("/api/skills/add", { skill });
+    return this.Post("/api/skill/add", { skill });
   }
 
   public async getSkills() {
     this.getCacheData();
-    const requestResponse = await this.Get("/api/skills/list");
+    const requestResponse = await this.Get("/api/skill/list");
     const parsedList: ISkill[] = this.generateSkills(
       requestResponse as ISkill[]
     );
@@ -30,7 +30,7 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async removeSkill(id: number | string) {
-    return await this.Delete(`/api/skills/${id}`);
+    return await this.Delete(`/api/skill/${id}`);
   }
 }
 

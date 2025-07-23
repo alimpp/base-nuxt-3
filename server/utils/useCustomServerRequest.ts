@@ -1,21 +1,22 @@
-export const useCustomServerRequest = async (event: any, url: string, options: any = {}) => {
-  const config = useRuntimeConfig();
-  
+export const useCustomServerRequest = async (
+  event: any,
+  url: string,
+  options: any = {}
+) => {
   const token = getCookie(event, "token");
-  
-  const headers = {
-    Authorization: token ? `Bearer ${token}` : '',
-    "Content-Type": "application/json",
-    ...options.headers
-  };
 
+  const headers = {
+    Authorization: token ? `Bearer ${token}` : "",
+    "Content-Type": "application/json",
+    ...options.headers,
+  };
   try {
     const response = await $fetch(url, {
       ...options,
-      headers
+      headers,
     });
     return response;
   } catch (error) {
-    throw error
+    throw error;
   }
 };

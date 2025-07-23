@@ -18,7 +18,7 @@ export class UserController extends UserDataModel {
   }
 
   private getCacheData() {
-    const cacheUser = this.readObject();        
+    const cacheUser = this.readObject();
     if (cacheUser) {
       userStore.setUser(cacheUser);
     }
@@ -45,14 +45,14 @@ export class UserController extends UserDataModel {
   }
 
   public async register(registerForm: ILoginForm) {
-    const response = await this.Post("/api/auth/register", registerForm)
+    const response = await this.Post("/api/auth/register", registerForm);
     if (response) {
       navigateTo("/auth/login");
     }
   }
 
   public async profile(): Promise<void> {
-    this.getCacheData()
+    this.getCacheData();
     const token = useCookie("token");
     userStore.setJwt(token.value ? token.value : "");
     const requestResponse = await this.Get("/api/users/profile");
@@ -71,9 +71,9 @@ export class UserController extends UserDataModel {
 
   public logout() {
     const token = useCookie("token");
-    token.value = ''
-    this.clearStorage()
-    navigateTo('/auth/login')
+    token.value = "";
+    this.clearStorage();
+    navigateTo("/auth/login");
   }
 }
 
