@@ -21,7 +21,7 @@ export class RequestController extends RequestDataModel {
   public async getRequestList() {
     this.getCacheData()
     const requestResponse = await this.Get('/api/request/list') as IServerResponse
-    const parsedList: IRequestList[] = await this.generateRequestList(requestResponse)
+    const parsedList: IRequestList[] = await this.requestListParsed(requestResponse)
     requestStore.setRequestList(parsedList)
   }
 

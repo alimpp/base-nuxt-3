@@ -7,7 +7,7 @@ export class SkillsDataModel extends BaseHttp {
     super("skills");
   }
 
-  public generateSkills(apiResponse: ISkill[]): (ISkill & { id: string })[] {
+  public skillsParsed(apiResponse: ISkill[]): (ISkill & { id: string })[] {
     if (!Array.isArray(apiResponse)) {
       throw new Error("Invalid skills data format");
     }

@@ -57,7 +57,7 @@ export class UserController extends UserDataModel {
     userStore.setJwt(token.value ? token.value : "");
     const requestResponse = await this.Get("/api/users/profile");
     if (requestResponse) userStore.setAuthenticated(true);
-    const user = await this.generateProfile(requestResponse);
+    const user = await this.profileParsed(requestResponse);
     userStore.setUser(user);
   }
 

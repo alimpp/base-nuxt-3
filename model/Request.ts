@@ -8,7 +8,7 @@ export class RequestDataModel extends BaseHttp {
     super("requests");
   }
 
-  async generateRequestList(apiResponse: IServerResponse): Promise<IRequestList[]> {
+  async requestListParsed(apiResponse: IServerResponse): Promise<IRequestList[]> {
     if (!Array.isArray(apiResponse)) {
       throw new Error("Invalid users data format");
     }

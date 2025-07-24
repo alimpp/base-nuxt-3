@@ -8,7 +8,7 @@ export class UsersDataModel extends BaseHttp {
     super("users");
   }
 
-  async generateUsers(apiResponse: IUsersServerResponse): Promise<IUserList[]> {
+  async usersParsed(apiResponse: IUsersServerResponse): Promise<IUserList[]> {
     if (!Array.isArray(apiResponse)) {
       throw new Error("Invalid users data format");
     }

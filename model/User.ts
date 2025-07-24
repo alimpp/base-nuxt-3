@@ -7,7 +7,7 @@ export class UserDataModel extends BaseHttp {
     super("user");
   }
 
-  async generateProfile(user: any) {
+  async profileParsed(user: any) {
     const avatarUrl = user.avatarUrl
       ? await filesController.downloadFileById(user.avatarUrl)
       : "";

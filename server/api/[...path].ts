@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const body =
     method !== "GET" && method !== "HEAD" ? await readBody(event) : undefined;
   console.log(
-    `METHOD: ---> ${method} , SERVICE CALL PATH ---> ${baseUrl}/${path}`
+    `METHOD ---> ${method} , SERVICE CALL PATH ---> ${baseUrl}/${path}`
   );
 
   switch (method) {

@@ -23,7 +23,7 @@ class SkillsController extends SkillsDataModel {
   public async getSkills() {
     this.getCacheData();
     const requestResponse = await this.Get("/api/skill/list");
-    const parsedList: ISkill[] = this.generateSkills(
+    const parsedList: ISkill[] = this.skillsParsed(
       requestResponse as ISkill[]
     );
     skillsStore.setSkills(parsedList);

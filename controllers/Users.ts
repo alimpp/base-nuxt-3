@@ -22,7 +22,7 @@ export class UsersController extends UsersDataModel {
       const requestResponse = (await this.Get(
         "/api/users/all"
       )) as IUsersServerResponse;
-      const parsedList: IUserList[] = await this.generateUsers(requestResponse);
+      const parsedList: IUserList[] = await this.usersParsed(requestResponse);
       usersStore.setUsers(parsedList);
     } catch (error) {
       console.error("Failed to fetch users:", error);
