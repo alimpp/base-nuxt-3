@@ -1,9 +1,7 @@
-import { BaseHttp } from "../core/BaseHttp";
+import { BaseApp } from "../core/BaseApp";
 
-export class FilesDataModel extends BaseHttp {
-
+export class FilesDataModel extends BaseApp<any> {
   constructor() {
-    super('files');
+    super("files");
   }
-  
 }

@@ -2,9 +2,6 @@ import { UserDataModel } from "~/model/User";
 
 import type { ILoginForm, IRegisterForm } from "@/types/User";
 
-const userStore = useUserStore();
-const applicationStore = useApplicationStore();
-
 interface IUpdateProfile {
   fristname: string;
   lastname: string;
@@ -17,10 +14,13 @@ export class UserController extends UserDataModel {
     super();
   }
 
+  private userStore = useUserStore();
+  private applicationStore = useApplicationStore();
+
   private getCacheData() {
     const cacheUser = this.readObject();
     if (cacheUser) {
-      userStore.setUser(cacheUser);
+      this.userStore.setUser(cacheUser);
     }
   }
 
@@ -34,7 +34,7 @@ export class UserController extends UserDataModel {
       })
       .catch((err) => {
         if (err.data.data.statusCode == 401) {
-          applicationStore.setAlert(
+          this.applicationStore.setAlert(
             "danger",
             err.data.data.message,
             err.data.data.error,
@@ -44,7 +44,7 @@ export class UserController extends UserDataModel {
       });
   }
 
-  public async register(registerForm: ILoginForm) {
+  public async register(registerForm: IRegisterForm) {
     const response = await this.Post("/api/auth/register", registerForm);
     if (response) {
       navigateTo("/auth/login");
@@ -54,11 +54,11 @@ export class UserController extends UserDataModel {
   public async profile(): Promise<void> {
     this.getCacheData();
     const token = useCookie("token");
-    userStore.setJwt(token.value ? token.value : "");
+    this.userStore.setJwt(token.value ? token.value : "");
     const requestResponse = await this.Get("/api/users/profile");
-    if (requestResponse) userStore.setAuthenticated(true);
+    if (requestResponse) this.userStore.setAuthenticated(true);
     const user = await this.profileParsed(requestResponse);
-    userStore.setUser(user);
+    this.userStore.setUser(user);
   }
 
   public async updateAvatar(avatarUrl: string) {

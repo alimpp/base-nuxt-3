@@ -1,8 +1,8 @@
-import { BaseHttp } from "../core/BaseHttp";
+import { BaseApp } from "../core/BaseApp";
 
 import type { ISkill } from "~/types/Skills";
 
-export class SkillsDataModel extends BaseHttp {
+export class SkillsDataModel extends BaseApp<any> {
   constructor() {
     super("skills");
   }

@@ -2,17 +2,17 @@ import { SkillsDataModel } from "~/model/Skills";
 
 import type { ISkill } from "@/types/Skills";
 
-const skillsStore = useSkillsStore();
-
 class SkillsController extends SkillsDataModel {
   constructor() {
     super();
   }
 
+  private skillsStore = useSkillsStore();
+
   private getCacheData() {
     const list = this.getAllItems();
     if (list) {
-      skillsStore.setSkills(list);
+      this.skillsStore.setSkills(list);
     }
   }
 
@@ -23,10 +23,8 @@ class SkillsController extends SkillsDataModel {
   public async getSkills() {
     this.getCacheData();
     const requestResponse = await this.Get("/api/skill/list");
-    const parsedList: ISkill[] = this.skillsParsed(
-      requestResponse as ISkill[]
-    );
-    skillsStore.setSkills(parsedList);
+    const parsedList: ISkill[] = this.skillsParsed(requestResponse as ISkill[]);
+    this.skillsStore.setSkills(parsedList);
   }
 
   public async removeSkill(id: number | string) {

@@ -1,9 +1,10 @@
-import { BaseHttp } from "../core/BaseHttp";
+import { BaseApp } from "../core/BaseApp";
 
 import type { IUsersServerResponse, IUserList } from "../types/Users";
 
 import { filesController } from "@/controllers/Files";
-export class UsersDataModel extends BaseHttp {
+
+export class UsersDataModel extends BaseApp<any> {
   constructor() {
     super("users");
   }

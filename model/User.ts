@@ -1,8 +1,8 @@
-import { BaseHttp } from "../core/BaseHttp";
+import { BaseApp } from "../core/BaseApp";
 
 import { filesController } from "@/controllers/Files";
 
-export class UserDataModel extends BaseHttp {
+export class UserDataModel extends BaseApp<any> {
   constructor() {
     super("user");
   }

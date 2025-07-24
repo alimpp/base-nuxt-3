@@ -2,17 +2,17 @@ import { UsersDataModel } from "~/model/Users";
 
 import type { IUsersServerResponse, IUserList } from "../types/Users";
 
-const usersStore = useUsersStore();
-
 export class UsersController extends UsersDataModel {
   constructor() {
     super();
   }
 
+  private usersStore = useUsersStore();
+
   private getCacheData() {
     const list = this.getAllItems();
     if (list) {
-      usersStore.setUsers(list);
+      this.usersStore.setUsers(list);
     }
   }
 
@@ -23,7 +23,7 @@ export class UsersController extends UsersDataModel {
         "/api/users/all"
       )) as IUsersServerResponse;
       const parsedList: IUserList[] = await this.usersParsed(requestResponse);
-      usersStore.setUsers(parsedList);
+      this.usersStore.setUsers(parsedList);
     } catch (error) {
       console.error("Failed to fetch users:", error);
       throw error;
