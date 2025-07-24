@@ -3,6 +3,7 @@ import { BaseModel } from "./BaseModel";
 type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
 export class BaseHttp extends BaseModel<any> {
+  
   private async request<T>(
     url: string,
     method: HttpMethod,
@@ -59,4 +60,5 @@ export class BaseHttp extends BaseModel<any> {
       throw error;
     }
   }
+  
 }
