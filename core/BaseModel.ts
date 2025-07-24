@@ -64,8 +64,6 @@ export abstract class BaseModel<T extends { id: string | number }> {
     return true;
   }
 
-  // ** Worked With Array Data Type ** //
-
   // ** Worked With Object Data Type ** //
 
   public readObject() {
@@ -79,5 +77,4 @@ export abstract class BaseModel<T extends { id: string | number }> {
     this.saveItem(items);
   }
 
-  // ** Worked With Object Data Type ** //
 }

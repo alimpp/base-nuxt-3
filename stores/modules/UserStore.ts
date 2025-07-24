@@ -41,6 +41,10 @@ export class UserStore extends BaseStore<IUserState> {
     this._state.jwtToken = jwt;
   }
 
+  getUser() {
+    return this._state.user
+  }
+
   setUser(user: IUser) {
     this._state.user = user;
   }

@@ -18,7 +18,7 @@
 const userStore = useUserStore()
 
 const user = computed(() => {
-  return userStore._state.user
+  return userStore.getUser()
 })
 
 const emit = defineEmits(["chnageSideMenuState"]);

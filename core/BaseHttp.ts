@@ -11,8 +11,6 @@ export class BaseHttp extends BaseModel<any> {
   ): Promise<T> {
     const api = useCustomFetch();
     try {
-      console.log(url);
-
       const response = await api(url, {
         method,
         body: body ? JSON.stringify(body) : undefined,

@@ -113,7 +113,7 @@ const addSkillAccess = ref(true)
 const skill = ref('')
 
 const user = computed(() => {
-    return userStore._state.user
+    return userStore.getUser()
 })
 
 const skillsDataSource = computed(() => {

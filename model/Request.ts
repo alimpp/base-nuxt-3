@@ -10,7 +10,7 @@ export class RequestDataModel extends BaseHttp {
 
   async requestListParsed(apiResponse: IServerResponse): Promise<IRequestList[]> {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid users data format");
+      throw new Error("Invalid list data format");
     }
     let list = []
     for (let req of apiResponse) {

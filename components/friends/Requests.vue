@@ -27,7 +27,7 @@ const requestStore = useRequestStore()
 const pageLoading = ref(false)
 
 const dataSource = computed(() => {
-  return requestStore._state.requestList
+  return requestStore.getRequestList
 })
 
 onMounted( async () => {

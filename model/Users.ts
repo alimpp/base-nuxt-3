@@ -10,7 +10,7 @@ export class UsersDataModel extends BaseHttp {
 
   async usersParsed(apiResponse: IUsersServerResponse): Promise<IUserList[]> {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid users data format");
+      throw new Error("Invalid list data format");
     }
     let userlist = [];
     for (const element of apiResponse) {

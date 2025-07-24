@@ -67,7 +67,6 @@
         bg="bg-none"
         color="color-primary"
         name="Pendding Your Accept"
-        @click="navigateTo('/friends/requests')"
         icon="svg-spinners:blocks-shuffle-3"
       />
       <BaseButton
@@ -90,7 +89,7 @@
         color="color-primary"
         class="mx-5"
         @click="navigateTo(`/user/viewProfile/${user.id}`)"
-        icon="fa-solid:street-view"
+        icon="solar:user-hand-up-broken"
       />
     </div>
   </BaseCard>

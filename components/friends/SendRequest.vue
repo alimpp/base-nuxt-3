@@ -28,7 +28,7 @@ const usersStore = useUsersStore()
 const pageLoading = ref(false)
 
 const dataSource = computed(() => {
-  return usersStore._state.users
+  return usersStore.users
 })
 
 onMounted( async () => {

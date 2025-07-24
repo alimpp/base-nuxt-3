@@ -9,7 +9,7 @@ export class SkillsDataModel extends BaseHttp {
 
   public skillsParsed(apiResponse: ISkill[]): (ISkill & { id: string })[] {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid skills data format");
+      throw new Error("Invalid list data format");
     }
 
     const skills = apiResponse.map((skill) => ({

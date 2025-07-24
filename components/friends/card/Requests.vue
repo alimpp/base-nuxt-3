@@ -49,6 +49,7 @@
 
 <script setup>
 import { requestController } from '~/controllers/Request';
+import { friendsController } from '~/controllers/Friends';
 
 const props = defineProps({
   user: {
@@ -68,7 +69,7 @@ const rejectRequest = async (id) => {
 const acceptLoading = ref(false);
 const acceptRequest = async (data) => {
   acceptLoading.value = true;
-  // await FriendsControllerModule.addFriend(data);
+  await friendsController.accept(data);
   acceptLoading.value = false;
 };
 </script>
