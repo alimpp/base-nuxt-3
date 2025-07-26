@@ -30,6 +30,14 @@ export class FriendsStore extends BaseStore<IFriendsListState> {
   setFriendsList(list: IFriendList[]) {
     this._state.friendList = list;
   }
+  
+  get getModuleState(): string {
+    return this._state.moduleState
+  }
+
+  public setModuleState(moduleState: string) {
+    this._state.moduleState = moduleState
+  }
 
   get getFriendsList(): IFriendList[] {
     return this._state.friendList;
