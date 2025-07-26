@@ -27,6 +27,14 @@ export class RequestStore extends BaseStore<IRequestListState> {
     StoreManager.register(this);
   }
 
+  get getModuleState(): string {
+    return this._state.moduleState
+  }
+
+  public setModuleState(moduleState: string) {
+    this._state.moduleState = moduleState
+  }
+
   setRequestList(list: IRequestList[]) {
     this._state.requestList = list;
   }
