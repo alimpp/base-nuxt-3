@@ -27,6 +27,14 @@ export class SkillsStore extends BaseStore<ISkillsState> {
     StoreManager.register(this);
   }
 
+  get getModuleState(): string {
+    return this._state.moduleState
+  }
+
+  public setModuleState(moduleState: string) {
+    this._state.moduleState = moduleState
+  }
+
   public setSkills(skills: ISkill[]) {
     this._state.skills = skills;
   }
