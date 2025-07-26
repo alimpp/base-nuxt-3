@@ -11,6 +11,7 @@
       <LayoutsAppHeader @chnageSideMenuState="chnageSideMenuState" />
       <div class="router-content">
         <NuxtPage />
+        <Compose />
       </div>
     </div>
   </div>

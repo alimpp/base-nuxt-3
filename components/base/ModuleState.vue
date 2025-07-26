@@ -1,5 +1,5 @@
 <template>
-    <div class="content color-primary">
+    <div class="content color-primary bg-info border-rounded py-5 px-5 fade-animation-2s">
         <BaseIcon icon="svg-spinners:blocks-shuffle-3" class="" />
         <div class="typing-text px-5">{{ text }}</div>
     </div>

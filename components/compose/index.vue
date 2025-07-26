@@ -1,27 +1,31 @@
 <template>
   <div
-    class="add-post-content-style border-rounded w-200-px h-40-px bg-primary-white border-secondary-gray slid-up-animation-3"
+    class="add-post-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-3"
     v-if="activeCompose"
-    @click="emit('createPost')"
+    @click="emited('createPost')"
   >
+    <BaseIcon class="mx-5" name="hugeicons:note" />
     <span class="f-s-14 f-w-500">Create Post</span>
   </div>
   <div
-    class="add-note-content-style border-rounded w-200-px h-40-px bg-primary-white border-secondary-gray slid-up-animation-5"
+    class="add-note-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-5"
     v-if="activeCompose"
-    @click="emit('addNote')"
+    @click="emited('addNote')"
   >
+    <BaseIcon class="mx-5" name="hugeicons:note-04" />
     <span class="f-s-14 f-w-500">Add Note</span>
   </div>
   <div
-    class="add-project-content-style border-rounded w-200-px h-40-px bg-primary-white border-secondary-gray slid-up-animation-8"
+    class="add-project-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-8"
     v-if="activeCompose"
-    @click="emit('createProject')"
+    @click="emited('createProject')"
   >
+    <BaseIcon class="mx-5" name="eos-icons:project-outlined" />
     <span class="f-s-14 f-w-500">Create Project</span>
   </div>
   <div class="float-button bg-primary">
-    <IconsComposePlus
+    <BaseIcon
+      icon="line-md:plus"
       @click="handleActiveCompose"
       :class="{
         'active-style': activeCompose,
@@ -32,17 +36,21 @@
 </template>
 
 <script setup>
-import { BaseAppStoreElementModule } from "~/stores/baseApp";
+const applicationStore = useApplicationStore()
 
 const emit = defineEmits(["createPost", "addNote", "createProject"]);
 
 const activeCompose = computed(() => {
-  return BaseAppStoreElementModule.compose.value;
+  return applicationStore.getComposeState;
 });
 
+const emited = (data) => {
+  emit(data)
+  applicationStore.setCompose()
+}
+
 const handleActiveCompose = () => {
-  BaseAppStoreElementModule.compose.value =
-    !BaseAppStoreElementModule.compose.value;
+  applicationStore.setCompose()
 };
 </script>
 

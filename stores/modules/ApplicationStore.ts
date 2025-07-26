@@ -21,6 +21,7 @@ interface IApplication {
   theme: string;
   toastMessages: Array<IToast>;
   alert: IAlert;
+  compose: boolean;
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -44,6 +45,7 @@ export class ApplicationStore extends BaseStore<IApplication> {
         id: "",
         timeout: 0,
       },
+      compose: false
     });
     StoreManager.register(this);
   }
@@ -72,6 +74,14 @@ export class ApplicationStore extends BaseStore<IApplication> {
     };
   }
 
+  public setCompose(state?: boolean) {
+    state ? this._state.compose = state : this._state.compose = !this._state.compose
+  }
+
+  get getComposeState(): boolean {
+    return this._state.compose
+  }
+
   public reset() {
     this._state.theme = "dark";
     this._state.toastMessages = [];
@@ -82,6 +92,7 @@ export class ApplicationStore extends BaseStore<IApplication> {
       id: "",
       timeout: 0,
     };
+    this._state.compose = false
   }
 
   private generateId(): string {
