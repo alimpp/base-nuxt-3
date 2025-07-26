@@ -1,6 +1,7 @@
 <template>
   <div class="base-modal-content fade-animation" v-if="isOpen">
     <div
+      :class="{'bg-app-dark': appTheme == 'dark', 'bg-app-light': appTheme == 'light'}"
       class="content bg-primary-white flex flex-column"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
@@ -13,12 +14,12 @@
           </div>
         </div>
         <div class="flex align-center px-4">
-          <IconsClose class="cursor-pointer" @click="emit('close')" />
+          <BaseIcon name="line-md:menu-to-close-alt-transition" class="cursor-pointer" @click="emit('close')" />
         </div>
       </div>
       <div class="flex justify-end w-100 py-8" v-else>
         <div class="flex  align-center px-4">
-          <IconsClose class="cursor-pointer" @click="emit('close')" />
+          <BaseIcon name="line-md:menu-to-close-alt-transition" class="cursor-pointer" @click="emit('close')" />
         </div>
       </div>
       <div class="flex w-100 py-10">
@@ -36,6 +37,11 @@
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore()
+const appTheme = computed(() => {
+    return applicationStore._state.theme
+})
+
 const props = defineProps({
   isOpen: {
     type: Boolean,
@@ -80,7 +86,7 @@ const emit = defineEmits(["close"]);
   height: 100dvh;
   position: fixed;
   z-index: 1000;
-  background: #00000096;
+  background: #ffffff8e;
   top: 0;
   bottom: 0;
   left: 0;

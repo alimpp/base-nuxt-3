@@ -38,14 +38,14 @@
 <script setup>
 const applicationStore = useApplicationStore()
 
-const emit = defineEmits(["createPost", "addNote", "createProject"]);
+const emit = defineEmits(["signal"]);
 
 const activeCompose = computed(() => {
   return applicationStore.getComposeState;
 });
 
 const emited = (data) => {
-  emit(data)
+  emit('signal', data)
   applicationStore.setCompose()
 }
 
