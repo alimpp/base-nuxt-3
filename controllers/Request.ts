@@ -18,7 +18,7 @@ export class RequestController extends RequestDataModel {
   }
 
   public async getRequestList() {
-    this.requestStore.setModuleState('Updating . . . ')
+    this.requestStore.setModuleState('Data Updating . . . ')
     this.getCacheData();
     const requestResponse = (await this.Get(
       "/api/request/list"

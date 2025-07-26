@@ -1,7 +1,7 @@
 import { UserDataModel } from "~/model/User";
 
 import type { ILoginForm, IRegisterForm } from "@/types/User";
-
+const { success } = useToast()
 interface IUpdateProfile {
   fristname: string;
   lastname: string;
@@ -30,6 +30,7 @@ export class UserController extends UserDataModel {
         const response = res as { token: string };
         const tokenCookie = useCookie("token", { maxAge: 60 * 60 * 24 });
         tokenCookie.value = response.token;
+        success('Authenticated Success')
         navigateTo("/");
       })
       .catch((err) => {
@@ -47,6 +48,7 @@ export class UserController extends UserDataModel {
   public async register(registerForm: IRegisterForm) {
     const response = await this.Post("/api/auth/register", registerForm);
     if (response) {
+      success('New Profile Created')
       navigateTo("/auth/login");
     }
   }
@@ -62,11 +64,11 @@ export class UserController extends UserDataModel {
   }
 
   public async updateAvatar(avatarUrl: string) {
-    this.Patch("/api/users/update", { avatarUrl });
+    this.Patch("/api/users/update", { avatarUrl }).then(()=> {success('Set New Avatar')})
   }
 
   async updateProfile(body: IUpdateProfile) {
-    this.Patch("/api/users/update", body);
+    this.Patch("/api/users/update", body).then(()=> {success('Profile Updated')})
   }
 
   public logout() {

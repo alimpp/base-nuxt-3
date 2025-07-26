@@ -17,7 +17,7 @@ export class UsersController extends UsersDataModel {
   }
 
   async allUsers(): Promise<void> {
-    this.usersStore.setModuleState('Updating . . . ')
+    this.usersStore.setModuleState('Data Updating . . . ')
     this.getCacheData();
     try {
       const requestResponse = (await this.Get(

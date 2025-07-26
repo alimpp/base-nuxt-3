@@ -18,7 +18,7 @@ export class FriendsController extends FriendsDataModel {
   }
 
   public async getFriendsList() {
-    this.friendsStore.setModuleState('Updating . . . ')
+    this.friendsStore.setModuleState('Data Updating . . . ')
     this.getCacheData();
     const requestResponse = (await this.Get(
       "/api/friends/list"

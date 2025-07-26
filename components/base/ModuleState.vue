@@ -24,7 +24,7 @@ const props = defineProps({
 .typing-text {
     color: #7d7be5;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     border-right: 1px solid #7d7be5;

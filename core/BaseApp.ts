@@ -1,5 +1,7 @@
 type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
+const { error } = useToast()
+
 export abstract class BaseApp<T extends { id: string | number }> {
   private readonly storageKey: string;
 
@@ -24,8 +26,8 @@ export abstract class BaseApp<T extends { id: string | number }> {
         },
       });
       return response as T;
-    } catch (error) {
-      console.error(`HTTP ${method} request to ${url} failed:`, error);
+    } catch (err) {
+      error(`HTTP ${method} request to ${url} failed`)
       throw error;
     }
   }
@@ -58,8 +60,8 @@ export abstract class BaseApp<T extends { id: string | number }> {
         body,
       });
       return response as T;
-    } catch (error) {
-      console.error(`File upload to ${url} failed:`, error);
+    } catch (err) {
+      error(`File upload to ${url} failed:`)
       throw error;
     }
   }
