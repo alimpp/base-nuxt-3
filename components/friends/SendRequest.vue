@@ -1,5 +1,6 @@
 <template>
   <div class="w-100 flex flex-column">
+    <BaseModuleState v-if="moduleState" :text="moduleState" />
     <div
       class="flex w-100 h-80-dvh align-cemter justify-center"
       v-if="!pageLoading && dataSource.length == 0"
@@ -29,6 +30,10 @@ const pageLoading = ref(false)
 
 const dataSource = computed(() => {
   return usersStore.users
+})
+
+const moduleState = computed(() => {
+  return usersStore.getModuleState
 })
 
 onMounted( async () => {

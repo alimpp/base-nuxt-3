@@ -17,6 +17,7 @@ export class UsersController extends UsersDataModel {
   }
 
   async allUsers(): Promise<void> {
+    this.usersStore.setModuleState('Updating . . . ')
     this.getCacheData();
     try {
       const requestResponse = (await this.Get(
@@ -24,6 +25,7 @@ export class UsersController extends UsersDataModel {
       )) as IUsersServerResponse;
       const parsedList: IUserList[] = await this.usersParsed(requestResponse);
       this.usersStore.setUsers(parsedList);
+      this.usersStore.setModuleState('')
     } catch (error) {
       console.error("Failed to fetch users:", error);
       throw error;
