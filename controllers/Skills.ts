@@ -2,6 +2,8 @@ import { SkillsDataModel } from "~/model/Skills";
 
 import type { ISkill } from "@/types/Skills";
 
+const { info, warning } = useToast()
+
 class SkillsController extends SkillsDataModel {
   constructor() {
     super();
@@ -17,7 +19,7 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async addSkill(skill: string) {
-    return this.Post("/api/skill/add", { skill });
+    return this.Post("/api/skill/add", { skill }).then(() => {info(`${skill} added to skills`)});
   }
 
   public async getSkills() {
@@ -27,8 +29,8 @@ class SkillsController extends SkillsDataModel {
     this.skillsStore.setSkills(parsedList);
   }
 
-  public async removeSkill(id: number | string) {
-    return await this.Delete(`/api/skill/${id}`);
+  public async removeSkill(skill: ISkill) {
+    return await this.Delete(`/api/skill/${skill.id}`).then(() => {warning(`${skill.skill} skill removed`)})
   }
 }
 

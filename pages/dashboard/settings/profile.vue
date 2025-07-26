@@ -151,7 +151,7 @@ const addSkill = async () => {
 };
 
 const removeSkill = async (skill) => {
-  await skillsController.removeSkill(skill.id)
+  await skillsController.removeSkill(skill)
   await skillsController.getSkills()
 }
 
