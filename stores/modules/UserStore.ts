@@ -39,6 +39,14 @@ export class UserStore extends BaseStore<IUserState> {
     StoreManager.register(this);
   }
 
+  get getModuleState(): string {
+    return this._state.moduleState
+  }
+
+  public setModuleState(moduleState: string) {
+    this._state.moduleState = moduleState
+  }
+
   setJwt(jwt: string) {
     this._state.jwtToken = jwt;
   }
