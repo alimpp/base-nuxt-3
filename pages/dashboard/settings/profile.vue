@@ -138,7 +138,6 @@ const udpateProfile = async () => {
     bio: user.value.bio,
   };
   await userController.updateProfile(body);
-  await userController.profile()
   loading.value = false
 };
 

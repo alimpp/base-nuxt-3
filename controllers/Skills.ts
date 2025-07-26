@@ -2,7 +2,7 @@ import { SkillsDataModel } from "~/model/Skills";
 
 import type { ISkill } from "@/types/Skills";
 
-const { info, warning } = useToast()
+const { info, error } = useToast()
 
 class SkillsController extends SkillsDataModel {
   constructor() {
@@ -30,7 +30,7 @@ class SkillsController extends SkillsDataModel {
   }
 
   public async removeSkill(skill: ISkill) {
-    return await this.Delete(`/api/skill/${skill.id}`).then(() => {warning(`${skill.skill} skill removed`)})
+    return await this.Delete(`/api/skill/${skill.id}`).then(() => {error(`${skill.skill} skill removed`)})
   }
 }
 

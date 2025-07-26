@@ -68,7 +68,10 @@ export class UserController extends UserDataModel {
   }
 
   async updateProfile(body: IUpdateProfile) {
-    this.Patch("/api/users/update", body).then(()=> {success('Profile Updated')})
+    this.Patch("/api/users/update", body).then(()=> {
+      success('Profile Updated')
+      this.profile()
+    })
   }
 
   public logout() {
