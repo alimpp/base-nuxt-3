@@ -6,6 +6,7 @@ interface IUserState {
   user: IUser;
   jwtToken: string;
   isAuthenticated: boolean;
+  moduleState: string
 }
 
 export class UserStore extends BaseStore<IUserState> {
@@ -32,6 +33,7 @@ export class UserStore extends BaseStore<IUserState> {
       },
       jwtToken: "",
       isAuthenticated: false,
+      moduleState: ''
     });
 
     StoreManager.register(this);
@@ -66,5 +68,6 @@ export class UserStore extends BaseStore<IUserState> {
     }),
       (this._state.jwtToken = "");
     this._state.isAuthenticated = false;
+    this._state.moduleState = ''
   }
 }

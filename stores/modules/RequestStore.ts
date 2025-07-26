@@ -5,6 +5,7 @@ import type { IRequestList } from "@/types/Request";
 
 interface IRequestListState {
   requestList: IRequestList[];
+  moduleState: string
 }
 
 export class RequestStore extends BaseStore<IRequestListState> {
@@ -20,6 +21,7 @@ export class RequestStore extends BaseStore<IRequestListState> {
   private constructor() {
     super("request", {
       requestList: [],
+      moduleState: ''
     });
 
     StoreManager.register(this);
@@ -35,5 +37,6 @@ export class RequestStore extends BaseStore<IRequestListState> {
 
   public reset() {
     this._state.requestList = [];
+    this._state.moduleState = ''
   }
 }

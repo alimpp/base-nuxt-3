@@ -5,6 +5,7 @@ import type { ISkill } from "@/types/Skills";
 
 interface ISkillsState {
   skills: ISkill[];
+  moduleState: string
 }
 
 export class SkillsStore extends BaseStore<ISkillsState> {
@@ -20,6 +21,7 @@ export class SkillsStore extends BaseStore<ISkillsState> {
   private constructor() {
     super("skills", {
       skills: [],
+      moduleState: ''
     });
 
     StoreManager.register(this);
@@ -31,5 +33,6 @@ export class SkillsStore extends BaseStore<ISkillsState> {
 
   public reset() {
     this._state.skills = [];
+    this._state.moduleState = ''
   }
 }

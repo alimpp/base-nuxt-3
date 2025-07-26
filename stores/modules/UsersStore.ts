@@ -5,6 +5,7 @@ import type { IUserList } from "@/types/Users";
 
 interface IUsersState {
   users: IUserList[];
+  moduleState: string
 }
 
 export class UsersStore extends BaseStore<IUsersState> {
@@ -20,6 +21,7 @@ export class UsersStore extends BaseStore<IUsersState> {
   private constructor() {
     super("users", {
       users: [],
+      moduleState: ''
     });
 
     StoreManager.register(this);
@@ -35,5 +37,6 @@ export class UsersStore extends BaseStore<IUsersState> {
 
   public reset() {
     this._state.users = [];
+    this._state.moduleState = ''
   }
 }

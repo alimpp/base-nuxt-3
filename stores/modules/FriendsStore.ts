@@ -5,6 +5,7 @@ import type { IFriendList } from "@/types/Friends";
 
 interface IFriendsListState {
   friendList: IFriendList[];
+  moduleState: string
 }
 
 export class FriendsStore extends BaseStore<IFriendsListState> {
@@ -20,6 +21,7 @@ export class FriendsStore extends BaseStore<IFriendsListState> {
   private constructor() {
     super("friends", {
       friendList: [],
+      moduleState: ""
     });
 
     StoreManager.register(this);
@@ -35,5 +37,6 @@ export class FriendsStore extends BaseStore<IFriendsListState> {
 
   public reset() {
     this._state.friendList = [];
+    this._state.moduleState = ''
   }
 }
