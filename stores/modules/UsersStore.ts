@@ -27,6 +27,14 @@ export class UsersStore extends BaseStore<IUsersState> {
     StoreManager.register(this);
   }
 
+  get getModuleState(): string {
+    return this._state.moduleState
+  }
+
+  public setModuleState(moduleState: string) {
+    this._state.moduleState = moduleState
+  }
+
   setUsers(users: IUserList[]) {
     this._state.users = users;
   }
