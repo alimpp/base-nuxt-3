@@ -12,7 +12,7 @@
       />
     </div>
     <div class="flex flex-wrap justify-center" v-if="pageLoading">
-      <FriendsSkeleton v-for="n in 20" class="mx-5" />
+      <NoteSkeleton v-for="n in 20" class="mx-5 mt-10" />
     </div>
     <div class="w-100 flex flex-wrap justify-center" v-else>
       <div class="w-370-px mx-5" v-for="(data, index) in dataSource">
