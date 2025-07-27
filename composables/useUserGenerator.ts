@@ -11,6 +11,9 @@ interface IUser {
 }
 
 export const useUserGenerator = async (user: IUser) => {
+  const colors = ['#8ecae6', '#a2d2ff', '#e07a5f', '#67b99a', '#358f80', '#90a959', '#274c77']
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  const randomColor = colors[randomIndex]
   const avatarUrl = user.avatarUrl
     ? await filesController.downloadFileById(user.avatarUrl)
     : "";
@@ -23,6 +26,6 @@ export const useUserGenerator = async (user: IUser) => {
     id: user.id,
     avatarUrl: avatarUrl,
     bio: user.bio,
-    avatarColor: "#" + Math.floor(Math.random() * 16777215).toString(16),
+    avatarColor: randomColor,
   };
 };

@@ -4,7 +4,7 @@ import { StoreManager } from "../../core/StoreManager";
 import type { IFriendList } from "@/types/Friends";
 
 interface IFriendsListState {
-  friendList: IFriendList[];
+  list: IFriendList[];
   moduleState: string
 }
 
@@ -20,15 +20,15 @@ export class FriendsStore extends BaseStore<IFriendsListState> {
 
   private constructor() {
     super("friends", {
-      friendList: [],
+      list: [],
       moduleState: ""
     });
 
     StoreManager.register(this);
   }
 
-  setFriendsList(list: IFriendList[]) {
-    this._state.friendList = list;
+  setList(list: IFriendList[]) {
+    this._state.list = list;
   }
   
   get getModuleState(): string {
@@ -39,12 +39,12 @@ export class FriendsStore extends BaseStore<IFriendsListState> {
     this._state.moduleState = moduleState
   }
 
-  get getFriendsList(): IFriendList[] {
-    return this._state.friendList;
+  get getList(): IFriendList[] {
+    return this._state.list;
   }
 
   public reset() {
-    this._state.friendList = [];
+    this._state.list = [];
     this._state.moduleState = ''
   }
 }

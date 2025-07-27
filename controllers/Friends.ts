@@ -13,20 +13,20 @@ export class FriendsController extends FriendsDataModel {
   private getCacheData() {
     const list = this.getAllItems();
     if (list) {
-      this.friendsStore.setFriendsList(list);
+      this.friendsStore.setList(list);
     }
   }
 
-  public async getFriendsList() {
+  public async getList() {
     this.friendsStore.setModuleState('Data Updating . . . ')
     this.getCacheData();
     const requestResponse = (await this.Get(
       "/api/friends/list"
     )) as IServerResponse;
-    const parsedList = (await this.friendsListParsed(
+    const parsedList = (await this.listParsed(
       requestResponse
     )) as IFriendList[];
-    this.friendsStore.setFriendsList(parsedList);
+    this.friendsStore.setList(parsedList);
     this.friendsStore.setModuleState('')
   }
 

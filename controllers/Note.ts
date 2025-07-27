@@ -18,10 +18,6 @@ class NoteController extends NoteDataModel {
     }
   }
 
-  public async addNote(data: string) {
-    return this.Post("/api/note/add", { note: data }).then(() => {info(`${data} shared in notes`)});
-  }
-
   public async getList() {
     this.noteStore.setModuleState('Data Updating . . . ')
     this.getCacheData();
@@ -29,6 +25,15 @@ class NoteController extends NoteDataModel {
     const list: INote[] = await this.listParsed(requestResponse);
     this.noteStore.setList(list);
     this.noteStore.setModuleState('')
+  }
+
+   public async addNote(data: string) {
+    return this.Post("/api/note/add", { note: data }).then( async () => {
+      info(`${data} shared in notes`)
+      setTimeout( async () => {
+        await this.getList()
+      }, 1000);
+    });
   }
 }
 

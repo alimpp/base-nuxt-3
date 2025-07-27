@@ -8,7 +8,7 @@ export class FriendsDataModel extends BaseApp<any> {
     super("friends");
   }
 
-  async friendsListParsed(apiResponse: IServerResponse) {
+  async listParsed(apiResponse: IServerResponse) {
     if (!Array.isArray(apiResponse)) {
       throw new Error("Invalid list data format");
     }

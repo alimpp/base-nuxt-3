@@ -52,8 +52,8 @@ const disabled = computed(() => {
 const addNote = async () => {
   loading.value = true
   await noteController.addNote(note.value)
-  loading.value = false
   close()
+  loading.value = false
   navigateTo('/dashboard/notes')
 }
 
