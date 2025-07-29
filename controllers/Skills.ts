@@ -5,6 +5,7 @@ import type { ISkill } from "@/types/Skills";
 const { info, error } = useToast()
 
 class SkillsController extends SkillsDataModel {
+  
   constructor() {
     super();
   }
@@ -32,6 +33,7 @@ class SkillsController extends SkillsDataModel {
   public async removeSkill(skill: ISkill) {
     return await this.Delete(`/api/skill/${skill.id}`).then(() => {error(`${skill.skill} skill removed`)})
   }
+  
 }
 
 export const skillsController = new SkillsController();
